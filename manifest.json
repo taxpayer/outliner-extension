@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "Outliner | A Chrome Extension for Outline.com",
+  "version": "1.5.0",
+  "description": "Tired of COPYing and PASTEing URL's in Outline.com website, I created an extension",
+  "author": "Rodrigo Vasconcellos",
+  "icons": { 
+    "16": "outline-logo-16.png",
+    "48": "outline-logo-48.png",
+    "128": "outline-logo.png" 
+  },
+  "action": {
+    "default_icon": "outline-logo.png",
+    "default_title": "Outliner"
+  },
+  "background" : {
+    "service_worker": "background.js"
+  },
+  "permissions": [
+    "tabs", 
+    "contextMenus"
+  ]
+}
