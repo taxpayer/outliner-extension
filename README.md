@@ -10,7 +10,7 @@ Tired of COPYing and PASTEing URL's on the **[Outline.com](https://outline.com)*
 
 This extension basically does a copy and paste of the active tab URL into the Outline.com website. They then do their magic, remove the clutter and you get your page more readable.
 
-Although I have sent several emails to communicate with **[Outline.com](https://outline.com)** and this extension has more than 22k users (`10-Aug-2021`) at Chrome Web Store, they never got back. Anyway, I love their service and I created this extension to make my days easier (and I really hope it helps you too!)
+Although I have sent several emails to communicate with **[Outline.com](https://outline.com)** about this extension and it has more than 22k users (`10-Aug-2021`) at the [Chrome Web Store](https://chrome.google.com/webstore/detail/outliner-a-chrome-extensi/eegpjjnajnplmkigmoglgbgpibgkkepo), they never got back. Anyway, I love their service and I created this extension to make my days easier (and I really hope it helps you too!)
 
 ## Disclaimer
 
