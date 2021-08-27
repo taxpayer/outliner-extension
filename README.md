@@ -20,7 +20,7 @@ Although I have sent several emails to communicate with **[Outline.com](https://
 
 ## History
 ### Version 1.5.1 `[27-Aug-2021]`
-- A user complained about Chrome requesting a new permission to enable version 1.5.0. I identified the "tabs" permission at the manifest was responsible for that. I also checked that the command I'm using to create a new tab doesn't need that permission. So, I removed it. Less permissions needed, more happy users! :-)
+- A user complained about Chrome requesting a new permission to enable version 1.5.0. I identified the "tabs" permission at the manifest was responsible for that. I also checked that the command I'm using to create a new tab doesn't need that permission. So, I removed it. Less required permissions, more happy users! :-)
 
 ### Version 1.5 `[10-Aug-2021]`
 - Hey guys, long time no see! Since 2019 too many things have happened, the world has been through some real awkward-crazy times due to this horrific Covid pandemic, but I hope you're getting on, despite all the sadness and problems.
