@@ -20,7 +20,7 @@ Although I have sent several emails to communicate with **[Outline.com](https://
 
 ## History
 ### Version 1.5 `[10-Aug-2021]`
-- Hey guys, long time no see! Since 2019 too many things have happened, the world has been through some real awkward-crazy times due to this terrific Covid pandemic, but I hope you're getting on, despite all the sadness and problems.
+- Hey guys, long time no see! Since 2019 too many things have happened, the world has been through some real awkward-crazy times due to this horrific Covid pandemic, but I hope you're getting on, despite all the sadness and problems.
 - I removed a lot of unused code in this version, especially because **[Outline.com](https://outline.com)** has changed their service since then and now this extension only opens their website with your link or page, depending on which context item you clicked, nothing else.
 - I also migrated the extension to [Manifest V3](https://developer.chrome.com/docs/extensions/mv3/intro/mv3-migration/), following Google's new recommendations, especially regarding permissions.
 - And I finally moved the source code to a public repo at GitHub. You can check it at [https://github.com/taxpayer/outliner-extension](https://github.com/taxpayer/outliner-extension)
