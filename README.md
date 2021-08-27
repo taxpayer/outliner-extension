@@ -19,6 +19,9 @@ Although I have sent several emails to communicate with **[Outline.com](https://
 **[Outline.com](https://outline.com)** does not support and/or told me to create and/or told me also not to create this extension in any way, I did it for fun! (And because I was tired of COPY and PASTE, to be honest)
 
 ## History
+### Version 1.5.1 `[27-Aug-2021]`
+- A user complained about Chrome requesting a new permission to enable version 1.5.0. I identified the "tabs" permission at the manifest was responsible for that. I also checked that the command I'm using to create a new tab doesn't need that permission. So, I removed it. Less permissions needed, more happy users! :-)
+
 ### Version 1.5 `[10-Aug-2021]`
 - Hey guys, long time no see! Since 2019 too many things have happened, the world has been through some real awkward-crazy times due to this terrific Covid pandemic, but I hope you're getting on, despite all the sadness and problems.
 - I removed a lot of unused code in this version, especially because **[Outline.com](https://outline.com)** has changed their service since then and now this extension only opens their website with your link or page, depending on which context item you clicked, nothing else.
