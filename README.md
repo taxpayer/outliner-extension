@@ -19,6 +19,9 @@ Although I have sent several emails to communicate with **[Outline.com](https://
 **[Outline.com](https://outline.com)** does not support and/or told me to create and/or told me also not to create this extension in any way, I did it for fun! (And because I was tired of COPY and PASTE, to be honest)
 
 ## History
+### Version 1.5.2 `[01-Sep-2021]`
+- Okay, removing the "tabs" permission wasn't enough because the toolbar action requires the current tab URL. After removing that permission, that action stopped working. But....! Another permission named "activeTab" doesn't ask the user for approval (that weird dialog that frightened some users) and enables it to grab the current opened URL: precisely what we need here! So, I'm giving it another try to solve this problem definitely. (TBH, I'll wait on users feedback on this, as it worked flawlessly in my local machine).
+
 ### Version 1.5.1 `[27-Aug-2021]`
 - A user complained about Chrome requesting a new permission to enable version 1.5.0. I identified the "tabs" permission at the manifest was responsible for that. I also checked that the command I'm using to create a new tab doesn't need that permission. So, I removed it. Less required permissions, more happy users! :-)
 
