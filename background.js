@@ -58,6 +58,8 @@ function setComplete() {
 }
 
 function outlineThis(url) {
+  console.log('[Outliner] outlineThis(' + url + ')');
+  
   const outlineUrl = 'https://outline.com/';
   
   if (!url || (url.length == 0) || !/^http(s)?:\/\//i.test(url) || (url.substring(0, outlineUrl.length) == outlineUrl))
@@ -83,6 +85,10 @@ chrome.i18n.getAcceptLanguages(languages => {
     });
     
     chrome.contextMenus.onClicked.addListener((info, tabs) => {
+      console.log('[Outliner] contextMenus.onClicked(info / tabs)');
+      console.log(info);
+      console.log(tabs);
+      
       switch (info.menuItemId) {
         case 'outlinerExt':
           outlineThis(info.linkUrl);
@@ -93,14 +99,18 @@ chrome.i18n.getAcceptLanguages(languages => {
           break;
       }
     });
-
-    chrome.action.onClicked.addListener(() => {
-      chrome.tabs.query({active: true, lastFocusedWindow: true}, (tabs) => {
-        if (tabs && (tabs.length > 0)) {
-          const url = tabs[0].url;
-          outlineThis(url);
-        }
-      });
+  });
+  
+  chrome.action.onClicked.addListener(() => {
+    console.log('[Outliner] action.onClicked(tabs)');
+    
+    chrome.tabs.query({active: true, lastFocusedWindow: true}, (tabs) => {
+      console.log(tabs);
+      
+      if (tabs && (tabs.length > 0)) {
+        const url = tabs[0].url;
+        outlineThis(url);
+      }
     });
   });
 });
