@@ -19,6 +19,9 @@ Although I have sent several emails to communicate with **[Outline.com](https://
 **[Outline.com](https://outline.com)** does not support and/or told me to create and/or told me also not to create this extension in any way, I did it for fun! (And because I was tired of COPY and PASTE, to be honest)
 
 ## History
+### Version 1.5.3 `[06-Sep-2021]`
+- There was a small bug in the context menu item click the first time a page was loaded. This small update fixes that. (One bugfix a day keeps the 1-star away...)
+
 ### Version 1.5.2 `[01-Sep-2021]`
 - Okay, removing the "tabs" permission wasn't enough because the toolbar action requires the current tab URL. After removing that permission, that action stopped working. But....! Another permission named "activeTab" doesn't ask the user for approval (that weird dialog that frightened some users) and enables it to grab the current opened URL: precisely what we need here! So, I'm giving it another try to solve this problem definitely. (TBH, I'll wait on users feedback on this, as it worked flawlessly in my local machine).
 
