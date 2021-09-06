@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Outliner | A Chrome Extension for Outline.com",
-  "version": "1.5.2",
+  "version": "1.5.3",
   "description": "Tired of COPYing and PASTEing URL's in Outline.com website, I created an extension",
   "author": "Rodrigo Vasconcellos",
   "icons": { 

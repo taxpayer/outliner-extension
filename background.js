@@ -83,34 +83,31 @@ chrome.i18n.getAcceptLanguages(languages => {
       id: 'outlinerExtPage',
       contexts: ['page'],
     });
-    
-    chrome.contextMenus.onClicked.addListener((info, tabs) => {
-      console.log('[Outliner] contextMenus.onClicked(info / tabs)');
-      console.log(info);
-      console.log(tabs);
-      
-      switch (info.menuItemId) {
-        case 'outlinerExt':
-          outlineThis(info.linkUrl);
-          break;
-          
-        case 'outlinerExtPage':
-          outlineThis(info.pageUrl);
-          break;
-      }
-    });
-  });
-  
-  chrome.action.onClicked.addListener(() => {
-    console.log('[Outliner] action.onClicked(tabs)');
-    
-    chrome.tabs.query({active: true, lastFocusedWindow: true}, (tabs) => {
-      console.log(tabs);
-      
-      if (tabs && (tabs.length > 0)) {
-        const url = tabs[0].url;
-        outlineThis(url);
-      }
-    });
   });
 });
+
+chrome.contextMenus.onClicked.addListener((info) => {
+  console.log(`[Outliner] contextMenus.onClicked(info): ${JSON.stringify(info)}`);
+  
+  switch (info.menuItemId) {
+    case 'outlinerExt':
+      outlineThis(info.linkUrl);
+      break;
+      
+    case 'outlinerExtPage':
+      outlineThis(info.pageUrl);
+      break;
+  }
+});
+
+chrome.action.onClicked.addListener(() => {
+  chrome.tabs.query({active: true, lastFocusedWindow: true}, (tabs) => {
+    console.log(`[Outliner] action.onClicked(tabs): ${JSON.stringify(tabs)}`);
+    
+    if (tabs && (tabs.length > 0)) {
+      const url = tabs[0].url;
+      outlineThis(url);
+    }
+  });
+});
+
