@@ -4,52 +4,70 @@
 
 'use strict';
 
-function linkTitle(languages) {
-  if (languages && (languages.length > 0)) {
-    const language = languages[0];
-    
-    switch (language) {
-      case 'pt':
-      case 'pt-BR':
-      case 'pt-PT':
-        return 'Abrir este link no Outline.com';
-      
-      case 'de':
-        return 'Öffnen diesen Link auf Outline.com';
-      
-      case 'es':
-        return 'Abrir este enlace en Outline.com';
+const services = [
+  {
+    name: '12ft.io',
+    website: 'https://12ft.io',
+    url: 'https://12ft.io/proxy?q=',
+    outline: (service, url) => {
+      if (/(http(s?)):\/\//i.test(url)) url = url.replace(/(http(s?)):\/\//i, '');
+      return `${service.url}${encodeURIComponent(url)}`;
     }
   }
-  
-  return 'Open this link on Outline.com';
+];
+
+const currentServiceName = '12ft.io';
+
+function getServiceByName(name) {
+  return services.find(x => x.name === name);
 }
 
-function pageTitle(languages) {
+function linkTitle(service, languages) {
   if (languages && (languages.length > 0)) {
     const language = languages[0];
-    
+
     switch (language) {
       case 'pt':
       case 'pt-BR':
       case 'pt-PT':
-        return 'Abrir esta página no Outline.com';
-      
+        return `Abrir este link no ${service.name}`;
+
       case 'de':
-        return 'Öffnen diese Seite auf Outline.com';
-      
+        return `Öffnen diesen Link auf ${service.name}`;
+
       case 'es':
-        return 'Abrir esta página en Outline.com';
+        return `Abrir este enlace en ${service.name}`;
     }
   }
-  
-  return 'Open this page on Outline.com';
+
+  return `Open this link on ${service.name}`;
+}
+
+function pageTitle(service, languages) {
+  if (languages && (languages.length > 0)) {
+    const language = languages[0];
+
+    switch (language) {
+      case 'pt':
+      case 'pt-BR':
+      case 'pt-PT':
+        return `Abrir esta página no ${service.name}`;
+
+      case 'de':
+        return `Öffnen diese Seite auf ${service.name}`;
+
+      case 'es':
+        return `Abrir esta página en ${service.name}`;
+    }
+  }
+
+  return `Open this page on ${service.name}`;
 }
 
 function setInit(url) {
   chrome.action.setBadgeBackgroundColor({ color: 'gray' });
   chrome.action.setBadgeText({ text: '...' });
-  chrome.action.setTitle({ title: "Outline'ing [" + url + "]" });
+  chrome.action.setTitle({ title: `Outline'ing [${url}]` });
 }
 
 function setComplete() {
@@ -57,29 +75,29 @@ function setComplete() {
   chrome.action.setTitle({ title: '' });
 }
 
-function outlineThis(url) {
-  console.log('[Outliner] outlineThis(' + url + ')');
-  
-  const outlineUrl = 'https://outline.com/';
-  
-  if (!url || (url.length == 0) || !/^http(s)?:\/\//i.test(url) || (url.substring(0, outlineUrl.length) == outlineUrl))
+function outlineThis(service, url) {
+  console.log(`[Outliner] outlineThis(${service.url}/${url})`);
+
+  if (!url || (url.length == 0) || !/^http(s)?:\/\//i.test(url) || (url.substring(0, service.url.length) == service.url))
     return;
-  
+
   setInit(url);
-  
-  chrome.tabs.create({ url: outlineUrl + url }, () => setComplete());
+
+  chrome.tabs.create({ url: service.outline(service, url) }, () => setComplete());
 }
 
 chrome.i18n.getAcceptLanguages(languages => {
+  const service = getServiceByName(currentServiceName);
+
   chrome.contextMenus.removeAll(() => {
     chrome.contextMenus.create({
-      title: linkTitle(languages),
+      title: linkTitle(service, languages),
       id: 'outlinerExt',
       contexts: ['link'],
     });
-    
+
     chrome.contextMenus.create({
-      title: pageTitle(languages),
+      title: pageTitle(service, languages),
       id: 'outlinerExtPage',
       contexts: ['page'],
     });
@@ -88,14 +106,16 @@ chrome.i18n.getAcceptLanguages(languages => {
 
 chrome.contextMenus.onClicked.addListener((info) => {
   console.log(`[Outliner] contextMenus.onClicked(info): ${JSON.stringify(info)}`);
-  
+
+  const service = getServiceByName(currentServiceName);
+
   switch (info.menuItemId) {
     case 'outlinerExt':
-      outlineThis(info.linkUrl);
+      outlineThis(service, info.linkUrl);
       break;
-      
+
     case 'outlinerExtPage':
-      outlineThis(info.pageUrl);
+      outlineThis(service, info.pageUrl);
       break;
   }
 });
@@ -103,10 +123,12 @@ chrome.contextMenus.onClicked.addListener((info) => {
 chrome.action.onClicked.addListener(() => {
   chrome.tabs.query({active: true, lastFocusedWindow: true}, (tabs) => {
     console.log(`[Outliner] action.onClicked(tabs): ${JSON.stringify(tabs)}`);
-    
+
+    const service = getServiceByName(currentServiceName);
+
     if (tabs && (tabs.length > 0)) {
       const url = tabs[0].url;
-      outlineThis(url);
+      outlineThis(service, url);
     }
   });
 });
