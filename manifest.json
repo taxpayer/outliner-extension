@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Outliner | An extension for O̶u̶t̶l̶i̶n̶e̶.̶c̶o̶m̶ improving your reading",
+  "name": "Outliner | An extension for improving your reading",
   "version": "2.0",
-  "description": "Tired of distractions in the middle of the text, I created this extension that uses services that improve your reading experience on the Internet.",
+  "description": "Tired of distractions on web pages, I created this extension that uses services that improve your reading experience.",
   "author": "Rodrigo Vasconcellos",
   "icons": {
     "16": "outline-logo-16.png",
