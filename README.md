@@ -1,24 +1,38 @@
 <a href="https://outline.com">
-    <img src="https://github.com/taxpayer/outliner-extension/blob/main/outline-logo.png?raw=true" alt="Outline.com logo" title="Outline.com" align="left" height="120" />
+    <img src="https://github.com/taxpayer/outliner-extension/blob/main/outline-logo.png?raw=true" alt="Old Outline.com logo" title="Outliner" align="left" height="120" />
 </a>
 
-# Outliner | A Chrome Extension for Outline.com
+# Outliner | An extension for O̶u̶t̶l̶i̶n̶e̶.̶c̶o̶m̶ improving your reading
 
-Tired of COPYing and PASTEing URL's on the **[Outline.com](https://outline.com)** website, I created this extension
+Tired of distractions in the middle of the text, I created this extension that uses services that improve your reading experience on the Internet.
 
 ## Description
 
-This extension basically does a copy and paste of the active tab URL into the Outline.com website. They then do their magic, remove the clutter and you get your page more readable.
-
-Although I have sent several emails to communicate with **[Outline.com](https://outline.com)** about this extension and it has more than 22k users (`10-Aug-2021`) at the [Chrome Web Store](https://chrome.google.com/webstore/detail/outliner-a-chrome-extensi/eegpjjnajnplmkigmoglgbgpibgkkepo), they never got back. Anyway, I love their service and I created this extension to make my days easier (and I really hope it helps you too!)
+This extension redirects the active tab/link URL to a 3rd-party service. They then do their magic, remove the clutter and you get your page more readable.
 
 ## Disclaimer
 
-**I AM NOT THE **[Outline.com](https://outline.com)** SERVICE/WEBSITE DEVELOPER! I JUST CREATED THIS TINY EXTENSION, THAT USES THEIR SERVICE, AND THAT'S ALL.**
+This extension uses 3rd-party services that remove clutter from webpages. Currently it uses the services from:
 
-**[Outline.com](https://outline.com)** does not support and/or told me to create and/or told me also not to create this extension in any way, I did it for fun! (And because I was tired of COPY and PASTE, to be honest)
+- **[12ft.io](https://12ft.io)**
+
+**I AM NOT THE OWNER/DEVELOPER OF ANY SERVICE/WEBSITE LISTED ABOVE! I JUST CREATED THIS TINY EXTENSION, THAT USES THEIR SERVICE, AND THAT'S ALL.**
+
+**YES, SOMETIMES I ALSO HAVE SOME COMPLAINTS ABOUT THEIR SERVICES, AS YOU DO, BUT THEN I HAVE TO CONTACT *THEM* BECAUSE, UNFORTUNATELY, THIS EXTENSION CAN'T IMPROVE OR UPDATE OR FIX ANYTHING ON THEIR SERVICES**
+
+The listed services do not support and/or told me to create and/or told me also not to create this extension in any way, I did it for fun!
 
 ## History
+
+### Version 2.0 `[10-Apr-2022]`
+Well, after almost 5 years, the beloved service **[Outline.com](https://outline.com)** has shut down. For good. It was gone so mysteriously as it was born. During all the time, I tried to communicate with them and never got an answer. Their website and available data were minimum, and even their Twitter account was abandoned. Anyway, it was a superb service. Somewhat in February, I got the first signs it was failing. I waited a bit. They have been offline for some time in the past but then returned. Not this time. And about 2 weeks ago, their website is redirected to a different offering their domain, bids starting at $150k 👀💸
+
+So, it made no more sense to keep this extension forwarding to their website (especially because I don't have a spare $150k with me here). So... This extension is moving to a new house. I'll start using **[12ft.io](https://12ft.io)**. It's pretty straightforward like Outline.com was. Some users suggested **[OutlineTTS.com](https://outlinetts.com)**. I'm still studying how it works and if it's worth implementing it. Some of their back-end services look pretty weird, honestly.
+
+Anyway, this extension now hits v2.0, and I intend to implement some other backup services so that it won't depend on only one service. But I decided to keep the Outline's icon as a form of gratitude and always remember why this ever started.
+
+Keep reading!
+
 ### Version 1.5.3 `[06-Sep-2021]`
 - There was a small bug in the context menu item click the first time a page was loaded. This small update fixes that. (One bugfix a day keeps the 1-star away...)
 
@@ -47,13 +61,13 @@ Although I have sent several emails to communicate with **[Outline.com](https://
 - Just one more context menu, this one for the page, not the links. It's the same action as clicking the button in the toolbar. "If it's the same action, why did you create this?" Because I'm still studying the Chrome Extensions API, found out this (different contexts for context-menu items) and I LIKED IT. Don't blame me, it's like a child visiting a new toy store.
 
 ### Version 1.4 `[17-Jun-2019]`
-- You may have asked yourself what the heck is going on when you click the toolbar button or the context-menu item because you have no visual report of what is happening... ASK YOURSELF NO MORE! Now you have a fancy, non-intrusive, beautiful badge in the toolbar button indicating that the extension is querying the Outline.com website (grey with 3 little tiny dots, aka. [ellipsis](https://en.wikipedia.org/wiki/Ellipsis) or any annoying error happened (red with a big E on it, that "E" from error, in case you missed it). To those ones who know what a Chrome Console is, yes, I'm consoling the error messages, too. 
+- You may have asked yourself what the heck is going on when you click the toolbar button or the context-menu item because you have no visual report of what is happening... ASK YOURSELF NO MORE! Now you have a fancy, non-intrusive, beautiful badge in the toolbar button indicating that the extension is querying the Outline.com website (grey with 3 little tiny dots, aka. [ellipsis](https://en.wikipedia.org/wiki/Ellipsis) or any annoying error happened (red with a big E on it, that "E" from error, in case you missed it). To those ones who know what a Chrome Console is, yes, I'm consoling the error messages, too.
 
 ### Version 1.3
 - Corrected the context-menu creation procedure. Sometimes it wasn't showing up, and that wasn't good at all because it always makes me happy when I right-click, see the context-menu item and think "Oooh, I did that".
 - Now I save the Outline-created URLs locally to use it again (if you click that link again, of course) without querying the Outline.com website one more time. You know, to make things quicker. Ah, and also to save you some bytes from your expensive Internet broadband package.
 
-### Version 1.2: 
+### Version 1.2:
 - Now we have a fancy context menu to open the **[Outline.com](https://outline.com)** link in a fresh new tab! You don't need to open a current page's link to turn that into an Outline link anymore! (You could already figure out that this extension tries to bring you (me?) the minimum browsing effort available, right?)
 
 ### Version 1."before 1.2":
