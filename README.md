@@ -18,13 +18,15 @@ This extension uses 3rd-party services that remove clutter from webpages. Curren
 
 **I AM NOT THE OWNER/DEVELOPER OF ANY SERVICE/WEBSITE LISTED ABOVE! I JUST CREATED THIS TINY EXTENSION, THAT USES THEIR SERVICE, AND THAT'S ALL.**
 
-**YES, SOMETIMES I ALSO HAVE SOME COMPLAINTS ABOUT THEIR SERVICES, AS YOU DO, BUT THEN I HAVE TO CONTACT *THEM* BECAUSE, UNFORTUNATELY, THIS EXTENSION CAN'T IMPROVE OR UPDATE OR FIX ANYTHING ON THEIR SERVICES**
+**YES, SOMETIMES I ALSO HAVE SOME COMPLAINTS ABOUT THEIR SERVICES, AS YOU DO, BUT THEN I HAVE TO CONTACT *THEM* BECAUSE, UNFORTUNATELY, THIS EXTENSION CAN'T IMPROVE OR UPDATE OR FIX ANYTHING ON THEIR SERVICES.**
 
 The listed services do not support and/or told me to create and/or told me also not to create this extension in any way, I did it for fun!
 
 ## History
 
 ### Version 2.0 `[10-Apr-2022]`
+"The king is dead, long live the king!"
+
 Well, after almost 5 years, the beloved service **[Outline.com](https://outline.com)** has shut down. For good. It was gone so mysteriously as it was born. During all the time, I tried to communicate with them and never got an answer. Their website and available data were minimum, and even their Twitter account was abandoned. Anyway, it was a superb service. Somewhat in February, I got the first signs it was failing. I waited a bit. They have been offline for some time in the past but then returned. Not this time. And about 2 weeks ago, their website is redirected to a different offering their domain, bids starting at $150k 👀💸
 
 So, it made no more sense to keep this extension forwarding to their website (especially because I don't have a spare $150k with me here). So... This extension is moving to a new house. I'll start using **[12ft.io](https://12ft.io)**. It's pretty straightforward like Outline.com was. Some users suggested **[OutlineTTS.com](https://outlinetts.com)**. I'm still studying how it works and if it's worth implementing it. Some of their back-end services look pretty weird, honestly.
