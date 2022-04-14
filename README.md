@@ -15,6 +15,7 @@ This extension redirects the active tab/link URL to a 3rd-party service. They th
 This extension uses 3rd-party services that remove clutter from webpages. Currently it uses the services from:
 
 - **[12ft.io](https://12ft.io)**
+- **[OutlineTTS](https://outlinetts.com)**
 
 **I AM NOT THE OWNER/DEVELOPER OF ANY SERVICE/WEBSITE LISTED ABOVE! I JUST CREATED THIS TINY EXTENSION, THAT USES THEIR SERVICE, AND THAT'S ALL.**
 
@@ -23,6 +24,22 @@ This extension uses 3rd-party services that remove clutter from webpages. Curren
 The listed services do not support and/or told me to create and/or told me also not to create this extension in any way, I did it for fun!
 
 ## History
+
+### Version 3.0 `[15-Apr-2022]`
+Yes, a new version to celebrate a great improvement. From now on, this extension officially has:
+1. A popup menu where you can...
+2. Choose between reading services available (more to come)...
+3. And if you want your page opened in the current tab or a new one...
+4. In 4 different languages (more to come)
+
+Outline's shutdown showed how important it is to have options. This version brings the flexibility to add (and remove) reading services as needed.
+Now the users of this extension can choose between [12ft.io](https://12ft.io) and [OutlineTTS](https://outlinetts.com) to read their pages.
+
+Do you have another service you'd like to see here? Email me!
+
+### Version 2.0.1 `[11-Apr-2022]`
+There was a typo in the extension description. Yeah, it happens... 🤦🏻‍♂️
+
 
 ### Version 2.0 `[10-Apr-2022]`
 "The king is dead, long live the king!"

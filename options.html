@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Outliner | Options</title>
+
+    <style>
+      body {
+        font-family: 'Segoe UI';
+        width: 350px;
+      }
+
+      .options-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+      }
+
+      .title {
+        background-color: #ebebeb;
+        border-top-right-radius: 6px;
+        display: flex;
+        justify-content: flex-start;
+        align-content: flex-start;
+        width: 100%;
+        height: 2rem;
+      }
+
+      .title .text {
+        font-size: large;
+        font-weight: 500;
+        line-height: 30px;
+        margin-left: 0.5rem;
+      }
+
+      .divider {
+        background-color: #ccc;
+        width: 100%;
+        height: 1.5rem;
+      }
+
+      .divider .text {
+        font-size: small;
+        font-weight: 500;
+        line-height: 21px;
+        margin-left: .5rem;
+      }
+
+      .services {
+        width: 100%;
+        min-height: 3rem;
+        height: 100%;
+      }
+
+      .service-item-container {
+        display: flex;
+        flex-flow: row;
+        padding: 0.5rem 0.2rem;
+      }
+
+      .service-item-container:hover {
+        background: #f5faff;
+      }
+
+      .service-item-container:first-of-type {
+        padding-top: .8rem !important;
+      }
+
+      .service-item-container:last-of-type {
+        padding-bottom: .8rem !important;
+      }
+
+      .service-item-container .service-item-icon {
+        width: 10%;
+      }
+
+      .service-item-container .service-item-icon img {
+        width: 16px;
+        height: 16px;
+      }
+
+      .service-item-container .service-item-title {
+        font-weight: bold;
+        width: 35%;
+      }
+
+      .service-item-container .service-item-options {
+        color: #bfbfbf;
+        display: flex;
+        width: 30%;
+      }
+
+      .service-item-container .service-item-options.hyperlink {
+        color: #6363ff;
+        cursor: pointer;
+        text-decoration: underline;
+      }
+
+      .service-item-container img.service-item-icon-external {
+        margin-left: 6px;
+        width: 16px;
+        height: 16px;
+      }
+
+      .additional-configuration-container {
+        display: flex;
+        flex-flow: column;
+        padding: 0.5rem 0.2rem;
+        width: 100%;
+      }
+
+      .additional-configuration-container .open-new-tab {
+        display: flex;
+        align-content: center;
+        justify-content: left;
+      }
+
+      .additional-configuration-container #open-new-tab-label {
+        line-height: 18px;
+        margin-left: 0.2rem;
+      }
+
+      .footer {
+        background: #ebebeb;
+        border-bottom-left-radius: 6px;
+        border-bottom-right-radius: 6px;
+        display: flex;
+        width: 100%;
+        height: 3rem;
+      }
+
+      .footer-divider {
+        background-color: #ccc;
+        width: 100%;
+        height: 0.5rem;
+      }
+
+      .footer .square {
+        box-shadow: 0;
+        transition: box-shadow 500ms;
+        width: 33%;
+        height: 100%;
+      }
+
+      .footer .square:hover {
+        cursor: pointer;
+        box-shadow: 2px 4px 6px #515151;
+      }
+
+      .footer .square:first-child {
+        border-bottom-left-radius: 6px;
+      }
+
+      .footer .square:last-child {
+        border-bottom-right-radius: 6px;
+        width: 34%;
+      }
+
+      .footer .square a,
+      .footer .square a:visited,
+      .footer .square a:active,
+      .footer .square a:focus {
+        text-decoration: none;
+      }
+
+      .footer .square img {
+        display: block;
+        margin: 4px auto;
+        width: 24px;
+        height: 24px;
+      }
+
+      .footer .square .label {
+        line-height: 12px;
+        text-align: center;
+      }
+
+      .footer .square.star {
+        background-color: #ffeb80;
+      }
+
+      .footer .square.star img {
+        filter: invert(33%) sepia(94%) saturate(1959%) hue-rotate(13deg) brightness(101%) contrast(86%);
+      }
+
+      .footer .square.star .label {
+        color: #000;
+      }
+
+      .footer .square.github {
+        color: #fff;
+        background-color: #171515;
+      }
+
+      .footer .square.github img {
+        filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(299deg) brightness(106%) contrast(102%);
+      }
+
+      .footer .square.github .label {
+        color: #fff;
+      }
+
+      .footer .square.email {
+        background-color: #fdb1b1;
+      }
+
+      .footer .square.email img {
+        filter: invert(24%) sepia(76%) saturate(6992%) hue-rotate(355deg) brightness(79%) contrast(97%);
+      }
+
+      .footer .square.email .label {
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="options-container">
+      <div class="title">
+        <div><img src="assets/outline-logo-32.png" alt="Outliner" /></div>
+        <div class="text">Outliner</div>
+      </div>
+      <div class="divider">
+        <div id="services-title" class="text"></div>
+      </div>
+      <div id="services-list" class="services"></div>
+      <div class="divider">
+        <div id="additional-configuration-title" class="text">Additional Configurations</div>
+      </div>
+      <div class="additional-configuration-container">
+        <div class="open-new-tab">
+          <input type="checkbox" id="open-new-tab" />
+          <label id="open-new-tab-label" for="open-new-tab"></label>
+        </div>
+      </div>
+      <div class="footer-divider">
+      </div>
+      <div class="footer">
+        <div class="square star">
+          <a href="https://chrome.google.com/webstore/detail/outliner-improving-your-r/eegpjjnajnplmkigmoglgbgpibgkkepo" target="_blank">
+            <img src="/assets/star-solid.svg" alt="Rate" />
+            <div id="footer-rate" class="label">Rate</div>
+          </a>
+        </div>
+        <div class="square github">
+          <a href="https://github.com/taxpayer/outliner-extension" target="_blank">
+            <img src="/assets/github-brands.svg" alt="Github" />
+            <div class="label">Github</div>
+          </a>
+        </div>
+        <div class="square email">
+          <a href="mailto:software@taxpayer.com.br">
+            <img src="/assets/envelope-solid.svg" alt="Email" />
+            <div id="footer-email" class="label">Email Me</div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <script defer src="options.js" type="module"></script>
+  </body>
+</html>
