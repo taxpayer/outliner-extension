@@ -1,5 +1,5 @@
 <a href="https://outline.com">
-    <img src="https://github.com/taxpayer/outliner-extension/blob/main/outline-logo.png?raw=true" alt="Old Outline.com logo" title="Outliner" align="left" height="120" />
+    <img src="https://github.com/taxpayer/outliner-extension/blob/main/assets/outline-logo.png?raw=true" alt="Old Outline.com logo" title="Outliner" align="left" height="120" />
 </a>
 
 # Outliner | An extension for O̶u̶t̶l̶i̶n̶e̶.̶c̶o̶m̶ improving your reading
