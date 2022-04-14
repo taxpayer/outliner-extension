@@ -40,7 +40,6 @@ Do you have another service you'd like to see here? Email me!
 ### Version 2.0.1 `[11-Apr-2022]`
 There was a typo in the extension description. Yeah, it happens... 🤦🏻‍♂️
 
-
 ### Version 2.0 `[10-Apr-2022]`
 "The king is dead, long live the king!"
 
