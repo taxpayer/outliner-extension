@@ -26,7 +26,7 @@ const services = [
     url: 'https://outlinetts.com/article',
     outline: (service, url) => {
       const uri = new URL(url);
-      const protocol = uri.getProtocol();
+      const protocol = uri.protocol.slice(0, -1);
 
       url = url.replace(/(http(s?)):\/\//i, '');
       return `${service.url}/${protocol}/${url}`;
@@ -35,40 +35,50 @@ const services = [
 ];
 
 // user's options
-const options = {};
-
-chrome.storage.sync.get('options', (data) => {
-  Object.assign(options, data.options);
-});
+const options = { };
 
 chrome.storage.onChanged.addListener((changes, area) => {
-  if (area === 'sync' && changes.options) Object.assign(options, changes.options);
+  if (area === 'sync' && changes.options.newValue)
+    Object.assign(options, changes.options.newValue);
 });
 
-export function getServicesList() {
-  const currentService = getCurrentService();
-  services.forEach(s => s.default = (s.name === currentService.name));
-
-  return services;
+export function initServices() {
+  return new Promise((resolve) => {
+    chrome.storage.sync.get('options', (data) => {
+      Object.assign(options, data.options);
+      resolve();
+    });
+  });
 }
 
-export function getServiceByName(name) {
+export function getOptions() {
+  return options;
+}
+
+export function getCurrentService() {
   const fallbackService = services[0];
-  const service = services.find(x => x.name === name);
+  const service = services.find(x => x.id === options.currentService);
 
   return service || fallbackService;
 }
 
-export function getCurrentService() {
-  const fallbackServiceName = '12ft.io';
-  return getServiceByName(options.currentService || fallbackServiceName);
-}
-
-export function setCurrentService(serviceName, callbackFn) {
-  options.currentService = serviceName;
+export function setCurrentService(service, callbackFn) {
+  options.currentService = service.id;
   buildContextMenus();
 
-  chrome.storage.sync.set({ 'options': options }, callbackFn);
+  chrome.storage.sync.set({'options': options}, callbackFn);
+}
+
+export function setOpenInNewTab(openInNewTab) {
+  options.openInNewTab = openInNewTab;
+  chrome.storage.sync.set({'options': options});
+}
+
+export function getServicesList() {
+  const currentService = getCurrentService();
+  services.forEach(s => s.default = (s.id === currentService.id));
+
+  return services;
 }
 
 export function linkTitle(service) {
@@ -81,9 +91,8 @@ export function pageTitle(service) {
   return translation.page(service.name);
 }
 
-export function buildContextMenus () {
+export function buildContextMenus() {
   chrome.contextMenus.removeAll(() => {
-    // context-menu default
     const service = getCurrentService();
 
     chrome.contextMenus.create({
@@ -115,23 +124,26 @@ chrome.contextMenus.onClicked.addListener((info) => {
 });
 
 function setOutlineInit(url) {
-  chrome.action.setBadgeBackgroundColor({ color: 'gray' });
-  chrome.action.setBadgeText({ text: '...' });
-  chrome.action.setTitle({ title: `Outline'ing [${url}]` });
+  chrome.action.setBadgeBackgroundColor({color: 'gray'});
+  chrome.action.setBadgeText({text: '...'});
+  chrome.action.setTitle({title: `Outlining [${url}]`});
 }
 
 function setOutlineComplete() {
-  chrome.action.setBadgeText({ text: '' });
-  chrome.action.setTitle({ title: '' });
+  chrome.action.setBadgeText({text: ''});
+  chrome.action.setTitle({title: ''});
 }
 
 export function outlineThis(service, url) {
-  console.log(`[Outliner] outlineThis(${service.url}/${url})`);
-
   if (!url || (url.length == 0) || !/^http(s)?:\/\//i.test(url) || (url.substring(0, service.url.length) == service.url))
     return;
 
+  const outlineUrl = service.outline(service, url);
+
   setOutlineInit(url);
 
-  chrome.tabs.create({ url: service.outline(service, url) }, () => setOutlineComplete());
+  if (options.openInNewTab)
+    chrome.tabs.create({url: outlineUrl}, () => setOutlineComplete());
+  else
+    chrome.tabs.update(null, {url: outlineUrl}, () => setOutlineComplete());
 }

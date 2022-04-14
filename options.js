@@ -4,10 +4,10 @@
 
 'use strict';
 
-import { getServicesList, getServiceByName, setCurrentService } from './services.js';
+import { initServices, getOptions, getServicesList, setCurrentService, setOpenInNewTab } from './services.js';
 import { getCurrentTranslation } from './translations.js';
 
-function buildServiceDiv (translation, service) {
+function buildServiceDiv(translation, service) {
   const divIcon = document.createElement('div');
   divIcon.className = 'service-item-icon';
 
@@ -33,7 +33,7 @@ function buildServiceDiv (translation, service) {
     divOptionsSetDefault.classList.add('hyperlink');
 
     anchorOptionsSetDefault.textContent = translation.setDefault;
-    anchorOptionsSetDefault.onclick = () => setAsDefault(service.name);
+    anchorOptionsSetDefault.onclick = () => setAsDefault(service);
   }
   else {
     divOptionsSetDefault.textContent = translation.setDefault;
@@ -43,7 +43,7 @@ function buildServiceDiv (translation, service) {
   const divOptionsVisitWebsite = document.createElement('div');
   divOptionsVisitWebsite.className = 'service-item-options hyperlink';
   divOptionsVisitWebsite.textContent = translation.visitWebsite;
-  divOptionsVisitWebsite.onclick = () => visitWebsite(service.name);
+  divOptionsVisitWebsite.onclick = () => visitWebsite(service);
 
   const imgIconExternal = document.createElement('img');
   divOptionsVisitWebsite.appendChild(imgIconExternal);
@@ -65,7 +65,7 @@ function buildServiceDiv (translation, service) {
   return divContainer;
 }
 
-function buildServicesList () {
+function buildServicesList() {
   const translation = getCurrentTranslation();
   const services = getServicesList();
 
@@ -77,60 +77,36 @@ function buildServicesList () {
   });
 }
 
+function buildAdditionalConfigurations() {
+  const options = getOptions();
+  const translation = getCurrentTranslation();
+
+  document.getElementById('open-new-tab-label').innerHTML = translation.openInNewTab;
+  document.getElementById('open-new-tab').checked = options.openInNewTab;
+  document.getElementById('open-new-tab').onchange = () => setOpenInNewTab(document.getElementById('open-new-tab').checked);
+}
+
 function setLabels() {
   const translation = getCurrentTranslation();
 
   document.getElementById('services-title').innerText = translation.services;
   document.getElementById('additional-configuration-title').innerText = translation.additionalConfiguration;
+  document.getElementById('footer-rate').innerText = translation.rate;
+  document.getElementById('footer-email').innerText = translation.email;
 }
 
-function setAsDefault(serviceName) {
-  setCurrentService(serviceName, () => buildServicesList());
+function setAsDefault(service) {
+  setCurrentService(service, () => buildServicesList());
 }
 
-function visitWebsite(serviceName) {
-  const service = getServiceByName(serviceName);
-  if (service) chrome.tabs.create({ url: service.website });
-}
-
-// Saves options to chrome.storage
-function save_options() {
-	var color = document.getElementById('color').value;
-  var likesColor = document.getElementById('like').checked;
-
-  chrome.storage.sync.set({
-    favoriteColor: color,
-    likesColor: likesColor,
-  },
-    function () {
-      // Update status to let user know options were saved.
-      var status = document.getElementById('status');
-      status.textContent = 'Options saved.';
-      setTimeout(function () {
-        status.textContent = '';
-      }, 750);
-    });
-}
-
-// Restores select box and checkbox state using the preferences
-// stored in chrome.storage.
-function restore_options() {
-	// Use default value color = 'red' and likesColor = true.
-	chrome.storage.sync.get(
-		{
-			favoriteColor: 'red',
-			likesColor: true,
-		},
-		function (items) {
-			document.getElementById('color').value = items.favoriteColor;
-			document.getElementById('like').checked = items.likesColor;
-		}
-	);
+function visitWebsite(service) {
+  chrome.tabs.create({ url: service.website });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  buildServicesList();
-  setLabels();
+  initServices().then(() => {
+    buildServicesList();
+    buildAdditionalConfigurations();
+    setLabels();
+  });
 });
-
-// document.getElementById('save').addEventListener('click', save_options);
