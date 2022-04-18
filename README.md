@@ -2,7 +2,7 @@
     <img src="https://github.com/taxpayer/outliner-extension/blob/main/assets/outline-logo.png?raw=true" alt="Old Outline.com logo" title="Outliner" align="left" height="120" />
 </a>
 
-# Outliner | An extension for O̶u̶t̶l̶i̶n̶e̶.̶c̶o̶m̶ improving your reading
+# Outliner | An extension for ~Outline.com~ improving your reading
 
 Tired of distractions in the middle of the text, I created this extension that uses services that improve your reading experience on the Internet.
 
