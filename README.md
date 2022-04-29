@@ -15,7 +15,8 @@ This extension redirects the active tab/link URL to a 3rd-party service. They th
 This extension uses 3rd-party services that remove clutter from webpages. Currently it uses the services from:
 
 - **[12ft.io](https://12ft.io)**
-- **[OutlineTTS](https://outlinetts.com)**
+- **[Outline TTS](https://outlinetts.com)**
+- **[Print Friendly](https://www.printfriendly.com)**
 
 **I AM NOT THE OWNER/DEVELOPER OF ANY SERVICE/WEBSITE LISTED ABOVE! I JUST CREATED THIS TINY EXTENSION, THAT USES THEIR SERVICE, AND THAT'S ALL.**
 
@@ -24,6 +25,13 @@ This extension uses 3rd-party services that remove clutter from webpages. Curren
 The listed services do not support and/or told me to create and/or told me also not to create this extension in any way, I did it for fun!
 
 ## History
+
+### Version 3.1 `[29-Apr-2022]`
+Let's go bullet points this time:
+
+- Added Print Friendly reading service!
+- A friend of mine, Linux user, showed me a screnshot of the dialog which didn't rendered correctly the Segoe UI font. So, as a tribute to him, I changed it to the Ubuntu font, loading it from Google Fonts.
+- Fixed options saving and loading. Async stuff always plays a trick on programmers.
 
 ### Version 3.0 `[15-Apr-2022]`
 Yes, a new version to celebrate a great improvement. From now on, this extension officially has:
