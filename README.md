@@ -30,7 +30,7 @@ The listed services do not support and/or told me to create and/or told me also 
 Let's go bullet points this time:
 
 - Added Print Friendly reading service!
-- A friend of mine, Linux user, showed me a screnshot of the dialog which didn't rendered correctly the Segoe UI font. So, as a tribute to him, I changed it to the Ubuntu font, loading it from Google Fonts.
+- A friend of mine, a Linux user, showed me a screenshot of the options dialog which didn't render correctly the Segoe UI font. So, as a tribute to him, I changed it to the Ubuntu font, loading it from Google Fonts.
 - Fixed options saving and loading. Async stuff always plays a trick on programmers.
 
 ### Version 3.0 `[15-Apr-2022]`
