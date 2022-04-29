@@ -12,15 +12,15 @@ const services = [
     name: '12ft.io',
     icon: '/assets/12ft.png',
     website: 'https://12ft.io',
-    url: 'https://12ft.io/proxy?q=',
+    url: 'https://12ft.io/proxy',
     outline: (service, url) => {
       if (/(http(s?)):\/\//i.test(url)) url = url.replace(/(http(s?)):\/\//i, '');
-      return `${service.url}${encodeURIComponent(url)}`;
+      return `${service.url}?q=${encodeURIComponent(url)}`;
     }
   },
   {
     id: 'outlinetts',
-    name: 'OutlineTTS',
+    name: 'Outline TTS',
     icon: '/assets/outlinetts.ico',
     website: 'https://outlinetts.com',
     url: 'https://outlinetts.com/article',
@@ -30,6 +30,17 @@ const services = [
 
       url = url.replace(/(http(s?)):\/\//i, '');
       return `${service.url}/${protocol}/${url}`;
+    },
+  },
+  {
+    id: 'printfriendly',
+    name: 'Print Friendly',
+    icon: '/assets/printfriendly.ico',
+    website: 'https://www.printfriendly.com',
+    url: 'https://www.printfriendly.com/print',
+    outline: (service, url) => {
+      url = `${service.url}/?source=homepage&url=${encodeURIComponent(url)}`;
+      return url;
     }
   }
 ];
@@ -148,6 +159,7 @@ export function outlineThis(service, url) {
     return;
 
   const outlineUrl = service.outline(service, url);
+  if (!outlineUrl) return;
 
   setOutlineInit(url);
 
