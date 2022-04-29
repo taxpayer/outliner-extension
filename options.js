@@ -4,7 +4,7 @@
 
 'use strict';
 
-import { initServices, getOptions, getServicesList, setCurrentService, setOpenInNewTab } from './services.js';
+import { getOptions, getServicesList, setCurrentService, setOpenInNewTab } from './services.js';
 import { getCurrentTranslation } from './translations.js';
 
 function buildServiceDiv(translation, service) {
@@ -78,12 +78,15 @@ function buildServicesList() {
 }
 
 function buildAdditionalConfigurations() {
-  const options = getOptions();
   const translation = getCurrentTranslation();
 
-  document.getElementById('open-new-tab-label').innerHTML = translation.openInNewTab;
-  document.getElementById('open-new-tab').checked = options.openInNewTab;
-  document.getElementById('open-new-tab').onchange = () => setOpenInNewTab(document.getElementById('open-new-tab').checked);
+  getOptions().then(options => {
+    console.log(options);
+
+    document.getElementById('open-new-tab-label').innerHTML = translation.openInNewTab;
+    document.getElementById('open-new-tab').checked = options.openInNewTab;
+    document.getElementById('open-new-tab').onchange = () => setOpenInNewTab(document.getElementById('open-new-tab').checked);
+  });
 }
 
 function setLabels() {
@@ -104,7 +107,7 @@ function visitWebsite(service) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  initServices().then(() => {
+  getOptions().then(() => {
     buildServicesList();
     buildAdditionalConfigurations();
     setLabels();
