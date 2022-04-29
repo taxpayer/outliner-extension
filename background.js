@@ -4,6 +4,6 @@
 
 'use strict';
 
-import { initServices, buildContextMenus } from './services.js';
+import { getOptions, buildContextMenus } from './services.js';
 
-initServices().then(() => buildContextMenus());
+getOptions().then(() => buildContextMenus());

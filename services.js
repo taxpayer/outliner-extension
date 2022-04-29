@@ -38,21 +38,23 @@ const services = [
 const options = { };
 
 chrome.storage.onChanged.addListener((changes, area) => {
-  if (area === 'sync' && changes.options.newValue)
-    Object.assign(options, changes.options.newValue);
+  if (area === 'sync' && changes.outlinerOptions?.newValue)
+    Object.assign(options, changes.outlinerOptions.newValue);
 });
 
-export function initServices() {
-  return new Promise((resolve) => {
-    chrome.storage.sync.get('options', (data) => {
-      Object.assign(options, data.options);
-      resolve();
-    });
-  });
-}
-
 export function getOptions() {
-  return options;
+  const key = 'outlinerOptions';
+
+  return new Promise((resolve, reject) =>
+    chrome.storage.sync.get(key, data => {
+      if (chrome.runtime.lastError)
+        reject(Error(chrome.runtime.lastError.message));
+      else {
+        Object.assign(options, data.outlinerOptions);
+        resolve(data.outlinerOptions);
+      }
+    })
+  );
 }
 
 export function getCurrentService() {
@@ -62,16 +64,23 @@ export function getCurrentService() {
   return service || fallbackService;
 }
 
+function setOptions(callbackFn) {
+  const outlinerOptions = {};
+  outlinerOptions.outlinerOptions = options;
+
+  chrome.storage.sync.set(outlinerOptions, callbackFn);
+}
+
 export function setCurrentService(service, callbackFn) {
   options.currentService = service.id;
-  buildContextMenus();
+  setOptions(callbackFn);
 
-  chrome.storage.sync.set({'options': options}, callbackFn);
+  buildContextMenus();
 }
 
 export function setOpenInNewTab(openInNewTab) {
   options.openInNewTab = openInNewTab;
-  chrome.storage.sync.set({'options': options});
+  setOptions();
 }
 
 export function getServicesList() {
