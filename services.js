@@ -13,7 +13,7 @@ const services = [
     icon: '/assets/12ft.png',
     website: 'https://12ft.io',
     url: 'https://12ft.io/proxy',
-    outline: (service, url) => {
+    outline: async (service, url) => {
       if (/(http(s?)):\/\//i.test(url)) url = url.replace(/(http(s?)):\/\//i, '');
       return `${service.url}?q=${encodeURIComponent(url)}`;
     }
@@ -24,7 +24,7 @@ const services = [
     icon: '/assets/outlinetts.ico',
     website: 'https://outlinetts.com',
     url: 'https://outlinetts.com/article',
-    outline: (service, url) => {
+    outline: async (service, url) => {
       const uri = new URL(url);
       const protocol = uri.protocol.slice(0, -1);
 
@@ -38,9 +38,23 @@ const services = [
     icon: '/assets/printfriendly.ico',
     website: 'https://www.printfriendly.com',
     url: 'https://www.printfriendly.com/print',
-    outline: (service, url) => {
+    outline: async (service, url) => {
       url = `${service.url}/?source=homepage&url=${encodeURIComponent(url)}`;
       return url;
+    }
+  },
+  {
+    id: 'darkread',
+    name: 'Darkread',
+    icon: '/assets/darkread.png',
+    website: 'https://www.darkread.io/',
+    url: 'https://www.darkread.io/api/getUrlId',
+    outline: async (service, url) => {
+      const proxy = 'https://outliner-proxy.herokuapp.com';
+      url = `${proxy}/${service.url}/?url=${url}`;
+
+      const response = await fetch(url, { headers: { 'x-requested-with': 'outliner' } }).then(res => res.json());
+      return `${service.website}/${response.uid}`;
     }
   }
 ];
@@ -130,17 +144,19 @@ export function buildContextMenus() {
 }
 
 chrome.contextMenus.onClicked.addListener((info) => {
-  const service = getCurrentService();
+  getOptions().then(() => {
+    const service = getCurrentService();
 
-  switch (info.menuItemId) {
-    case 'outliner-default-link':
-      outlineThis(service, info.linkUrl);
-      break;
+    switch (info.menuItemId) {
+      case 'outliner-default-link':
+        outlineThis(service, info.linkUrl);
+        break;
 
-    case 'outliner-default-page':
-      outlineThis(service, info.pageUrl);
-      break;
-  }
+      case 'outliner-default-page':
+        outlineThis(service, info.pageUrl);
+        break;
+    }
+  });
 });
 
 function setOutlineInit(url) {
@@ -154,17 +170,21 @@ function setOutlineComplete() {
   chrome.action.setTitle({title: ''});
 }
 
-export function outlineThis(service, url) {
+export async function outlineThis(service, url) {
   if (!url || (url.length == 0) || !/^http(s)?:\/\//i.test(url) || (url.substring(0, service.url.length) == service.url))
     return;
 
-  const outlineUrl = service.outline(service, url);
-  if (!outlineUrl) return;
-
   setOutlineInit(url);
 
+  const outlineUrl = await service.outline(service, url);
+
+  if (!outlineUrl) {
+    setOutlineComplete();
+    return;
+  }
+
   if (options.openInNewTab)
-    chrome.tabs.create({url: outlineUrl}, () => setOutlineComplete());
-  else
-    chrome.tabs.update(null, {url: outlineUrl}, () => setOutlineComplete());
+      chrome.tabs.create({url: outlineUrl}, () => setOutlineComplete());
+    else
+      chrome.tabs.update(null, {url: outlineUrl}, () => setOutlineComplete());
 }

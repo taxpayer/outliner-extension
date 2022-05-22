@@ -17,6 +17,7 @@ This extension uses 3rd-party services that remove clutter from webpages. Curren
 - **[12ft.io](https://12ft.io)**
 - **[Outline TTS](https://outlinetts.com)**
 - **[Print Friendly](https://www.printfriendly.com)**
+- **[Darkread](https://www.darkread.io/)**
 
 **I AM NOT THE OWNER/DEVELOPER OF ANY SERVICE/WEBSITE LISTED ABOVE! I JUST CREATED THIS TINY EXTENSION, THAT USES THEIR SERVICE, AND THAT'S ALL.**
 
@@ -25,6 +26,11 @@ This extension uses 3rd-party services that remove clutter from webpages. Curren
 The listed services do not support and/or told me to create and/or told me also not to create this extension in any way, I did it for fun!
 
 ## History
+
+### Version 3.2 `[22-May-2022]`
+- Added Darkread reading service! Darkread was suggested at https://github.com/taxpayer/outliner-extension/issues/4 and had really good performance in some sites I use to visit. Hope ye like it too!
+- BTW, I'm a huge dark-themed things
+- Fixed more stuff related to options loading. (Sorry, blame it on me https://open.spotify.com/track/61BqwgSRTyWH9M4uPjsC3B?si=5bf69c5c286c483c) 🐛
 
 ### Version 3.1 `[29-Apr-2022]`
 Let's go bullet points this time:
