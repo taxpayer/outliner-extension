@@ -9,7 +9,7 @@ var languages;
 const translations = {
   'en': {
     link: (serviceName) => `Open this link on ${serviceName}`,
-    page: (serviceName) => `Open this page on ${serviceName}`,
+    page: (serviceName, html = false) => `Open this page on ${(html ? serviceName : stripHtml(serviceName))}`,
     services: 'Available Services',
     additionalConfiguration: 'Additional Configurations',
     setDefault: 'set as default',
@@ -19,8 +19,8 @@ const translations = {
     email: 'Email Me',
   },
   'pt': {
-    link: (serviceName) => `Abrir este link no ${serviceName}`,
-    page: (serviceName) => `Abrir esta página no ${serviceName}`,
+    link: (serviceName) => `Abrir este link em ${serviceName}`,
+    page: (serviceName, html = false) => `Abrir esta página em ${(html ? serviceName : stripHtml(serviceName))}`,
     services: 'Serviços Disponíveis',
     additionalConfiguration: 'Configurações Adicionais',
     setDefault: 'tornar padrão',
@@ -31,7 +31,7 @@ const translations = {
   },
   'es': {
     link: (serviceName) => `Abrir este enlace en ${serviceName}`,
-    page: (serviceName) => `Abrir esta página en ${serviceName}`,
+    page: (serviceName, html = false) => `Abrir esta página en ${(html ? serviceName : stripHtml(serviceName))}`,
     services: 'Servicios Disponibles',
     additionalConfiguration: 'Configuraciones Adicionales',
     setDefault: 'establecer por defecto',
@@ -42,7 +42,7 @@ const translations = {
   },
   'de': {
     link: (serviceName) => `Öffnen diesen Link auf ${serviceName}`,
-    page: (serviceName) => `Öffnen diese Seite auf ${serviceName}`,
+    page: (serviceName, html = false) => `Öffnen diese Seite auf ${(html ? serviceName : stripHtml(serviceName))}`,
     services: 'Verfügbaren Dienstleistungen',
     additionalConfiguration: 'Weitere Konfigurationen',
     setDefault: 'als Standard einstellen',
@@ -51,6 +51,10 @@ const translations = {
     rate: 'Bewerten',
     email: 'Schreib mir',
   },
+}
+
+function stripHtml(html) {
+  return html.replace(/<[^>]*>/g, '');
 }
 
 export function getCurrentTranslation() {
