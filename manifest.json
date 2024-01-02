@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Outliner | Improving your reading experience",
-  "version": "3.2",
+  "version": "3.3",
   "description": "Tired of distractions on web pages, I created this extension that uses services that improve your reading experience.",
   "author": "Rodrigo Vasconcellos",
   "icons": {
