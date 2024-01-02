@@ -28,7 +28,9 @@ const services = [
       const protocol = uri.protocol.slice(0, -1);
 
       url = url.replace(/(http(s?)):\/\//i, '');
-      return `${service.url}/${protocol}/${url}`;
+      url = `${service.url}/${protocol}/${url}`;
+
+      return url;
     },
   },
   {
@@ -66,7 +68,7 @@ chrome.storage.onChanged.addListener((changes, area) => {
     Object.assign(options, changes.outlinerOptions.newValue);
 });
 
-export function getOptions() {
+export function getOptions(reset = true) {
   const key = 'outlinerOptions';
 
   return new Promise((resolve, reject) =>
@@ -74,7 +76,7 @@ export function getOptions() {
       if (chrome.runtime.lastError)
         reject(Error(chrome.runtime.lastError.message));
       else {
-        Object.assign(options, data.outlinerOptions);
+        if (reset) Object.assign(options, data.outlinerOptions);
         resolve(data.outlinerOptions);
       }
     })
