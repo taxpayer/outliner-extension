@@ -12,10 +12,9 @@ const services = [
     name: '12ft.io',
     icon: '/assets/12ft.png',
     website: 'https://12ft.io',
-    url: 'https://12ft.io/proxy',
+    url: 'https://12ft.io',
     outline: async (service, url) => {
-      if (/(http(s?)):\/\//i.test(url)) url = url.replace(/(http(s?)):\/\//i, '');
-      return `${service.url}?q=${encodeURIComponent(url)}`;
+      return `${service.url}/${url}`;
     }
   },
   {
