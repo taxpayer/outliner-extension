@@ -57,6 +57,8 @@ function buildServiceDiv(translation, service) {
   const divContainer = document.createElement('div');
   divContainer.className = 'service-item-container';
 
+  if (service.default) divContainer.classList.add('service-default');
+
   divContainer.appendChild(divIcon);
   divContainer.appendChild(divTitle);
   divContainer.appendChild(divOptionsSetDefault);
