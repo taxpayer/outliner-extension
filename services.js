@@ -51,10 +51,12 @@ const services = [
     website: 'https://www.darkread.io/',
     url: 'https://www.darkread.io/api/getUrlId',
     outline: async (service, url) => {
-      const proxy = 'https://outliner-proxy.herokuapp.com';
-      url = `${proxy}/${service.url}/?url=${url}`;
+      const proxy = 'https://proxy.cors.sh';
+      const serviceUrl = `${service.url}/?url=${url}`;
 
-      const response = await fetch(url, { headers: { 'x-requested-with': 'outliner' } }).then(res => res.json());
+      url = `${proxy}/${serviceUrl}`;
+
+      const response = await fetch(url, { headers: { 'x-cors-api-key': 'temp_29039f81f38626b35e990aac40eb156a' } }).then(res => res.json());
       return `${service.website}/${response.uid}`;
     }
   }
