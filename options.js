@@ -4,7 +4,7 @@
 
 'use strict';
 
-import { getOptions, getServicesList, setCurrentService, setOpenInNewTab } from './services.js';
+import { getCurrentService, getOptions, getServicesList, setCurrentService, setOpenInNewTab, outlineThis } from './services.js';
 import { getCurrentTranslation } from './translations.js';
 
 function buildServiceDiv(translation, service) {
@@ -77,10 +77,26 @@ function buildServicesList() {
   });
 }
 
+function buildOpenCurrentPage() {
+  const translation = getCurrentTranslation();
+  const service = getCurrentService();
+
+  chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+    var currentUrl = tabs[0].url;
+
+    const openPageButton = document.createElement('button');
+    openPageButton.innerHTML = translation.page(`<strong style="margin-left:.25rem">${service.name}</strong>`, true);
+    openPageButton.onclick = () => outlineThis(service, currentUrl);
+
+    document.getElementById('open-page').innerHTML = '';
+    document.getElementById('open-page').appendChild(openPageButton);
+  });
+}
+
 function buildAdditionalConfigurations() {
   const translation = getCurrentTranslation();
 
-  getOptions().then(options => {
+  getOptions(false).then(options => {
     console.log(options);
 
     document.getElementById('open-new-tab-label').innerHTML = translation.openInNewTab;
@@ -99,7 +115,10 @@ function setLabels() {
 }
 
 function setAsDefault(service) {
-  setCurrentService(service, () => buildServicesList());
+  setCurrentService(service, () => {
+    buildServicesList();
+    buildOpenCurrentPage();
+  });
 }
 
 function visitWebsite(service) {
@@ -109,6 +128,7 @@ function visitWebsite(service) {
 document.addEventListener('DOMContentLoaded', () => {
   getOptions().then(() => {
     buildServicesList();
+    buildOpenCurrentPage();
     buildAdditionalConfigurations();
     setLabels();
   });
