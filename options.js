@@ -7,6 +7,17 @@
 import { getCurrentService, getOptions, getServicesList, setCurrentService, setOpenInNewTab, outlineThis } from './services.js';
 import { getCurrentTranslation } from './translations.js';
 
+function buildTitle() {
+  fetch('./manifest.json')
+    .then(response => response.json())
+    .then(manifest => {
+      document.getElementById('version').innerText = `v${manifest.version}`;
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+}
+
 function buildServiceDiv(translation, service) {
   const divIcon = document.createElement('div');
   divIcon.className = 'service-item-icon';
@@ -129,6 +140,7 @@ function visitWebsite(service) {
 
 document.addEventListener('DOMContentLoaded', () => {
   getOptions().then(() => {
+    buildTitle();
     buildServicesList();
     buildOpenCurrentPage();
     buildAdditionalConfigurations();
