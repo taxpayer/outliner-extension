@@ -4,8 +4,19 @@
 
 'use strict';
 
-import { getOptions, getServicesList, setCurrentService, setOpenInNewTab } from './services.js';
+import { getCurrentService, getOptions, getServicesList, setCurrentService, setOpenInNewTab, outlineThis } from './services.js';
 import { getCurrentTranslation } from './translations.js';
+
+function buildTitle() {
+  fetch('./manifest.json')
+    .then(response => response.json())
+    .then(manifest => {
+      document.getElementById('version').innerText = `v${manifest.version}`;
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+}
 
 function buildServiceDiv(translation, service) {
   const divIcon = document.createElement('div');
@@ -57,6 +68,8 @@ function buildServiceDiv(translation, service) {
   const divContainer = document.createElement('div');
   divContainer.className = 'service-item-container';
 
+  if (service.default) divContainer.classList.add('service-default');
+
   divContainer.appendChild(divIcon);
   divContainer.appendChild(divTitle);
   divContainer.appendChild(divOptionsSetDefault);
@@ -77,10 +90,26 @@ function buildServicesList() {
   });
 }
 
+function buildOpenCurrentPage() {
+  const translation = getCurrentTranslation();
+  const service = getCurrentService();
+
+  chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+    var currentUrl = tabs[0].url;
+
+    const openPageButton = document.createElement('button');
+    openPageButton.innerHTML = translation.page(`<strong style="margin-left:.25rem">${service.name}</strong>`, true);
+    openPageButton.onclick = () => outlineThis(service, currentUrl);
+
+    document.getElementById('open-page').innerHTML = '';
+    document.getElementById('open-page').appendChild(openPageButton);
+  });
+}
+
 function buildAdditionalConfigurations() {
   const translation = getCurrentTranslation();
 
-  getOptions().then(options => {
+  getOptions(false).then(options => {
     console.log(options);
 
     document.getElementById('open-new-tab-label').innerHTML = translation.openInNewTab;
@@ -99,7 +128,10 @@ function setLabels() {
 }
 
 function setAsDefault(service) {
-  setCurrentService(service, () => buildServicesList());
+  setCurrentService(service, () => {
+    buildServicesList();
+    buildOpenCurrentPage();
+  });
 }
 
 function visitWebsite(service) {
@@ -108,7 +140,9 @@ function visitWebsite(service) {
 
 document.addEventListener('DOMContentLoaded', () => {
   getOptions().then(() => {
+    buildTitle();
     buildServicesList();
+    buildOpenCurrentPage();
     buildAdditionalConfigurations();
     setLabels();
   });

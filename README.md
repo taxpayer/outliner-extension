@@ -27,6 +27,14 @@ The listed services do not support and/or told me to create and/or told me also 
 
 ## History
 
+### Version 3.3 `[05-Jan-2024]`
+Hey folks, long time no see! It's 2024 already! 🎉 Although it's been a long time, the extension is still alive, and at the beginning of this year, I decided to fix some bugs, get some UI improvements and exercise my Chrome extension development. So, here are the changes to this version:
+
+- Added a **Open Page** button in options dialog. Some users expected the toolbar button to open the page immediately because this was how the extension used to work. The button tries to bring the functionality back.
+- Fix **[12ft.io](https://12ft.io)** service call after it changed a bit the way it works
+- Fix **[Darkread](https://www.darkread.io/)** CORS proxy call. In the past, I created a script in Heroku to overcome the CORS imposed by the Darkread service. But Heroku closed its slugs free-tier, so I created Cloudflare's worker with the same functionality. The extension now uses this solution.
+- Options dialog UI improvements
+
 ### Version 3.2 `[22-May-2022]`
 - Added Darkread reading service! Darkread was suggested at https://github.com/taxpayer/outliner-extension/issues/4 and had really good performance in some sites I use to visit. Hope ye like it too!
 - BTW, I'm a huge dark-themed things

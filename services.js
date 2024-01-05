@@ -6,16 +6,17 @@
 
 import { getCurrentTranslation } from './translations.js';
 
+const extensionName = 'Outliner';
+
 const services = [
   {
     id: '12ft',
     name: '12ft.io',
     icon: '/assets/12ft.png',
     website: 'https://12ft.io',
-    url: 'https://12ft.io/proxy',
+    url: 'https://12ft.io',
     outline: async (service, url) => {
-      if (/(http(s?)):\/\//i.test(url)) url = url.replace(/(http(s?)):\/\//i, '');
-      return `${service.url}?q=${encodeURIComponent(url)}`;
+      return `${service.url}/${url}`;
     }
   },
   {
@@ -29,7 +30,9 @@ const services = [
       const protocol = uri.protocol.slice(0, -1);
 
       url = url.replace(/(http(s?)):\/\//i, '');
-      return `${service.url}/${protocol}/${url}`;
+      url = `${service.url}/${protocol}/${url}`;
+
+      return url;
     },
   },
   {
@@ -50,10 +53,10 @@ const services = [
     website: 'https://www.darkread.io/',
     url: 'https://www.darkread.io/api/getUrlId',
     outline: async (service, url) => {
-      const proxy = 'https://outliner-proxy.herokuapp.com';
-      url = `${proxy}/${service.url}/?url=${url}`;
+      const proxy = 'https://outliner-proxy-darkread.rodrigo-828.workers.dev/cors-proxy';
+      const proxyUrl = `${proxy}/${url}`;
 
-      const response = await fetch(url, { headers: { 'x-requested-with': 'outliner' } }).then(res => res.json());
+      const response = await fetch(proxyUrl).then(res => res.json());
       return `${service.website}/${response.uid}`;
     }
   }
@@ -67,7 +70,7 @@ chrome.storage.onChanged.addListener((changes, area) => {
     Object.assign(options, changes.outlinerOptions.newValue);
 });
 
-export function getOptions() {
+export function getOptions(reset = true) {
   const key = 'outlinerOptions';
 
   return new Promise((resolve, reject) =>
@@ -75,7 +78,7 @@ export function getOptions() {
       if (chrome.runtime.lastError)
         reject(Error(chrome.runtime.lastError.message));
       else {
-        Object.assign(options, data.outlinerOptions);
+        if (reset) Object.assign(options, data.outlinerOptions);
         resolve(data.outlinerOptions);
       }
     })
@@ -131,13 +134,13 @@ export function buildContextMenus() {
 
     chrome.contextMenus.create({
       id: 'outliner-default-link',
-      title: linkTitle(service),
+      title: `${extensionName} | ${linkTitle(service)}`,
       contexts: ['link'],
     });
 
     chrome.contextMenus.create({
       id: 'outliner-default-page',
-      title: pageTitle(service),
+      title: `${extensionName} | ${pageTitle(service)}`,
       contexts: ['page'],
     });
   });
