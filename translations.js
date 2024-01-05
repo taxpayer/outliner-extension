@@ -17,6 +17,8 @@ const translations = {
     openInNewTab: 'Open in a new tab',
     rate: 'Rate',
     email: 'Email Me',
+    openPage: 'Open this page on',
+    openLink: 'Open this link on',
   },
   'pt': {
     link: (serviceName) => `Abrir este link em ${serviceName}`,
@@ -28,6 +30,8 @@ const translations = {
     openInNewTab: 'Abrir em uma nova aba',
     rate: 'Avaliar',
     email: 'Escreva-me!',
+    openPage: 'Abrir esta página em',
+    openLink: 'Abrir este link em',
   },
   'es': {
     link: (serviceName) => `Abrir este enlace en ${serviceName}`,
@@ -39,6 +43,8 @@ const translations = {
     openInNewTab: 'Abrir en nueva pestaña',
     rate: 'Valorar',
     email: 'Envíeme un email',
+    openPage: 'Abrir esta página en',
+    openLink: 'Abrir este enlace en',
   },
   'de': {
     link: (serviceName) => `Öffnen diesen Link auf ${serviceName}`,
@@ -50,6 +56,8 @@ const translations = {
     openInNewTab: 'Öffnen in neuem Tab',
     rate: 'Bewerten',
     email: 'Schreib mir',
+    openPage: 'Öffnen diese Seite auf',
+    openLink: 'Öffnen diesen Link auf',
   },
 }
 
