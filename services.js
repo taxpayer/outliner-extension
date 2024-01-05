@@ -6,6 +6,8 @@
 
 import { getCurrentTranslation } from './translations.js';
 
+const extensionName = 'Outliner';
+
 const services = [
   {
     id: '12ft',
@@ -134,13 +136,13 @@ export function buildContextMenus() {
 
     chrome.contextMenus.create({
       id: 'outliner-default-link',
-      title: linkTitle(service),
+      title: `${extensionName} | ${linkTitle(service)}`,
       contexts: ['link'],
     });
 
     chrome.contextMenus.create({
       id: 'outliner-default-page',
-      title: pageTitle(service),
+      title: `${extensionName} | ${pageTitle(service)}`,
       contexts: ['page'],
     });
   });
