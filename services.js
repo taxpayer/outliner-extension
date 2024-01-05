@@ -53,12 +53,10 @@ const services = [
     website: 'https://www.darkread.io/',
     url: 'https://www.darkread.io/api/getUrlId',
     outline: async (service, url) => {
-      const proxy = 'https://proxy.cors.sh';
-      const serviceUrl = `${service.url}/?url=${url}`;
+      const proxy = 'https://outliner-proxy-darkread.rodrigo-828.workers.dev/cors-proxy';
+      const proxyUrl = `${proxy}/${url}`;
 
-      url = `${proxy}/${serviceUrl}`;
-
-      const response = await fetch(url, { headers: { 'x-cors-api-key': 'temp_29039f81f38626b35e990aac40eb156a' } }).then(res => res.json());
+      const response = await fetch(proxyUrl).then(res => res.json());
       return `${service.website}/${response.uid}`;
     }
   }
