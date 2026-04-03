@@ -1,0 +1,11 @@
+{
+  "appName": { "message": "Outliner | Improving your reading experience" },
+  "appDesc": { "message": "A simple one-click tool to improve your reading experience by bypassing common web distractions and paywall overlays." },
+  "btnUnbrick": { "message": "Unbrick This Page" },
+  "btnEnableAuto": { "message": "Enable Auto-Unbrick" },
+  "btnDisableAuto": { "message": "Disable Auto-Unbrick" },
+  "statusNotActive": { "message": "Not active on this site" },
+  "statusActive": { "message": "Auto-Unbrick Active" },
+  "footerNotice": { "message": "Works only on current tab" },
+  "working": { "message": "Working..." }
+}

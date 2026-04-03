@@ -1,0 +1,11 @@
+{
+  "appName": { "message": "Outliner | Ihr Leseerlebnis verbessern" },
+  "appDesc": { "message": "Ein einfaches Ein-Klick-Tool zur Verbesserung Ihres Leseerlebnisses, indem gängige Ablenkungen im Internet und Paywall-Overlays umgangen werden." },
+  "btnUnbrick": { "message": "Seite entsperren" },
+  "btnEnableAuto": { "message": "Auto-Entsperren aktivieren" },
+  "btnDisableAuto": { "message": "Auto-Entsperren deaktivieren" },
+  "statusNotActive": { "message": "Auf dieser Seite nicht aktiv" },
+  "statusActive": { "message": "Auto-Entsperrung aktiv" },
+  "footerNotice": { "message": "Funktioniert nur im aktuellen Tab" },
+  "working": { "message": "Verarbeitung..." }
+}

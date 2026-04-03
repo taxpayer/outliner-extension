@@ -19,7 +19,16 @@ async function cleanPage(tabId, url, isAuto = false) {
       target: { tabId },
       world: 'MAIN',
       func: (isAuto) => {
-        console.log(`🔓 Outliner: Triggering ${isAuto ? 'Automatic ' : ''}Clean Mode...`);
+        const i18n = {
+          en: { unbrickedBy: 'Happily unbricked by', dismiss: 'Dismiss', magic: 'Page successfully unbricked.', triggered: 'Triggering Clean Mode...' },
+          pt: { unbrickedBy: 'Desbloqueado com sucesso pelo', dismiss: 'Fechar', magic: 'Página desbloqueada com sucesso.', triggered: 'Iniciando Modo de Limpeza...' },
+          es: { unbrickedBy: 'Desbloqueado con éxito por', dismiss: 'Cerrar', magic: 'Página desbloqueada con éxito.', triggered: 'Iniciando Modo de Limpieza...' },
+          de: { unbrickedBy: 'Erfolgreich entsperrt von', dismiss: 'Schließen', magic: 'Seite erfolgreich entsperrt.', triggered: 'Reinigungsmodus wird gestartet...' }
+        };
+        const lang = navigator.language.split('-')[0];
+        const t = i18n[lang] || i18n.en;
+
+        console.log(`🔓 Outliner: ${t.triggered}`);
         fetch(location.href)
           .then(response => response.text())
           .then(html => {
@@ -29,7 +38,6 @@ async function cleanPage(tabId, url, isAuto = false) {
             // Set the new content
             document.documentElement.innerHTML = html;
 
-            // Inject CSS to fix reading experience
             const style = document.createElement('style');
             style.id = 'outliner-styles';
             style.innerHTML = `
@@ -71,12 +79,12 @@ async function cleanPage(tabId, url, isAuto = false) {
             `;
             document.head.appendChild(style);
 
-            // Create banner
+            // Create banner using localized strings
             const banner = document.createElement('div');
             banner.id = 'outliner-bar';
             banner.innerHTML = `
-              <span>🔓 Happily unbricked by <strong>Outliner</strong>${isAuto ? ' (auto)' : ''}</span>
-              <button id="close-outliner">Dismiss</button>
+              <span>🔓 ${t.unbrickedBy} <strong>Outliner</strong>${isAuto ? ' (auto)' : ''}</span>
+              <button id="close-outliner">${t.dismiss}</button>
             `;
             document.body.prepend(banner);
 
@@ -102,7 +110,8 @@ chrome.action.onClicked.addListener((tab) => {
 });
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  if (message.action === 'auto_unbrick' && sender.tab) {
-    cleanPage(sender.tab.id, sender.tab.url, true);
+  if (message.action === 'manual_unbrick') {
+    // Manually trigger cleaning for the active tab (provided by popup)
+    cleanPage(message.tabId, message.url, false);
   }
 });

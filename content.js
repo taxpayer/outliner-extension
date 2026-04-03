@@ -3,11 +3,20 @@
 (function() {
   let hasBeenCleaned = false;
 
+  const i18n = {
+    en: { unbrickedBy: 'Happily unbricked by', dismiss: 'Dismiss', magic: 'Page successfully unbricked.', triggered: 'Paywall signal detected! Triggering automatic unbrick...' },
+    pt: { unbrickedBy: 'Desbloqueado com sucesso pelo', dismiss: 'Fechar', magic: 'Página desbloqueada com sucesso.', triggered: 'Sinal de paywall detectado! Iniciando desbloqueio automático...' },
+    es: { unbrickedBy: 'Desbloqueado con éxito por', dismiss: 'Cerrar', magic: 'Página desbloqueada con éxito.', triggered: '¡Señal de paywall detectada! Iniciando desbloqueo automático...' },
+    de: { unbrickedBy: 'Erfolgreich entsperrt von', dismiss: 'Schließen', magic: 'Seite erfolgreich entsperrt.', triggered: 'Paywall-Signal erkannt! Automatisches Entsperren wird gestartet...' }
+  };
+  const lang = navigator.language.split('-')[0];
+  const t = i18n[lang] || i18n.en;
+
   function cleanPage() {
     if (hasBeenCleaned || document.getElementById('outliner-bar')) return;
     hasBeenCleaned = true;
 
-    console.log('🔓 Outliner: Paywall signal detected! Triggering automatic unbrick...');
+    console.log(`🔓 Outliner: ${t.triggered}`);
 
     fetch(location.href)
       .then(response => response.text())
@@ -67,8 +76,8 @@
         const banner = document.createElement('div');
         banner.id = 'outliner-bar';
         banner.innerHTML = `
-          <span>🔓 Happily unbricked by <strong>Outliner</strong> (auto mode)</span>
-          <button id="close-outliner">Dismiss</button>
+          <span>🔓 ${t.unbrickedBy} <strong>Outliner</strong> (auto mode)</span>
+          <button id="close-outliner">${t.dismiss}</button>
         `;
         document.body.prepend(banner);
 
@@ -77,7 +86,7 @@
           document.body.style.paddingTop = '0px';
         };
 
-        console.log('🔓 Outliner: Page successfully unbricked.');
+        console.log(`🔓 Outliner: ${t.magic}`);
       })
       .catch(err => {
         hasBeenCleaned = false; // Allow retry on failure

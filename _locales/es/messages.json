@@ -1,0 +1,11 @@
+{
+  "appName": { "message": "Outliner | Mejorando tu experiencia de lectura" },
+  "appDesc": { "message": "Una herramienta sencilla de un solo clic para mejorar tu experiencia de lectura evitando distracciones comunes en la web y bloqueos de paywall." },
+  "btnUnbrick": { "message": "Desbloquear esta página" },
+  "btnEnableAuto": { "message": "Activar Auto-Desbloqueo" },
+  "btnDisableAuto": { "message": "Desactivar Auto-Desbloqueo" },
+  "statusNotActive": { "message": "No activo en este sitio" },
+  "statusActive": { "message": "Auto-Desbloqueo Activo" },
+  "footerNotice": { "message": "Solo funcion en la pestaña actual" },
+  "working": { "message": "Trabajando..." }
+}

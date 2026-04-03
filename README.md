@@ -8,7 +8,7 @@ This extension helps you read articles by re-fetching the page content to bypass
 
 ## History
 
-### Version 4.0 `[03-Apr-2026]`
+### Version 4.0.1 `[03-Apr-2026]`
 It's been a loooooooong time (again). But I'm back! And with a complete refactor because, well, time passes and some services I used to rely on or are no longer available or decided to take some directions I doubt I'll ever understand. 🤷
 
 Now the extension works on its own, with no external dependencies. So let's see how it goes. 🤞 Here are the updates:
@@ -17,6 +17,7 @@ Now the extension works on its own, with no external dependencies. So let's see 
   - Removed all external services (12ft, OutlineTTS, etc.) as they were no longer working reliably.
   - Implemented local logic: one click to re-fetch and clean the current page.
   - Removed options dialog and unnecessary permissions for a leaner experience.
+- Added an option to enable/disable auto-unbrick per domain.
 - Added a nice notification banner when the extension works.
 
 ### Version 3.3 `[05-Jan-2024]`
