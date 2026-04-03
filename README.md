@@ -1,31 +1,23 @@
-<a href="https://outline.com">
-    <img src="https://github.com/taxpayer/outliner-extension/blob/main/assets/outline-logo.png?raw=true" alt="Old Outline.com logo" title="Outliner" align="left" height="120" />
-</a>
+# Outliner | Improving your reading experience
 
-# Outliner | An extension for ~Outline.com~ improving your reading
-
-Tired of distractions in the middle of the text, I created this extension that uses services that improve your reading experience on the Internet.
+A simple one-click tool to improve your reading experience by bypassing common web distractions and paywall overlays.
 
 ## Description
 
-This extension redirects the active tab/link URL to a 3rd-party service. They then do their magic, remove the clutter and you get your page more readable.
-
-## Disclaimer
-
-This extension uses 3rd-party services that remove clutter from webpages. Currently it uses the services from:
-
-- **[12ft.io](https://12ft.io)**
-- **[Outline TTS](https://outlinetts.com)**
-- **[Print Friendly](https://www.printfriendly.com)**
-- **[Darkread](https://www.darkread.io/)**
-
-**I AM NOT THE OWNER/DEVELOPER OF ANY SERVICE/WEBSITE LISTED ABOVE! I JUST CREATED THIS TINY EXTENSION, THAT USES THEIR SERVICE, AND THAT'S ALL.**
-
-**YES, SOMETIMES I ALSO HAVE SOME COMPLAINTS ABOUT THEIR SERVICES, AS YOU DO, BUT THEN I HAVE TO CONTACT *THEM* BECAUSE, UNFORTUNATELY, THIS EXTENSION CAN'T IMPROVE OR UPDATE OR FIX ANYTHING ON THEIR SERVICES.**
-
-The listed services do not support and/or told me to create and/or told me also not to create this extension in any way, I did it for fun!
+This extension helps you read articles by re-fetching the page content to bypass client-side overlays and cleaning up the CSS for a better reading experience. It doesn't rely on external services anymore, making it faster and more reliable.
 
 ## History
+
+### Version 4.0 `[03-Apr-2026]`
+It's been a loooooooong time (again). But I'm back! And with a complete refactor because, well, time passes and some services I used to rely on or are no longer available or decided to take some directions I doubt I'll ever understand. 🤷
+
+Now the extension works on its own, with no external dependencies. So let's see how it goes. 🤞 Here are the updates:
+
+- Complete refactor of the extension:
+  - Removed all external services (12ft, OutlineTTS, etc.) as they were no longer working reliably.
+  - Implemented local logic: one click to re-fetch and clean the current page.
+  - Removed options dialog and unnecessary permissions for a leaner experience.
+- Added a nice notification banner when the extension works.
 
 ### Version 3.3 `[05-Jan-2024]`
 Hey folks, long time no see! It's 2024 already! 🎉 Although it's been a long time, the extension is still alive, and at the beginning of this year, I decided to fix some bugs, get some UI improvements and exercise my Chrome extension development. So, here are the changes to this version:

@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Outliner | Improving your reading experience",
-  "version": "3.3",
-  "description": "Tired of distractions on web pages, I created this extension that uses services that improve your reading experience.",
+  "version": "4.0",
+  "description": "A simple one-click tool to improve your reading experience by bypassing common web distractions and paywall overlays.",
   "author": "Rodrigo Vasconcellos",
   "icons": {
     "16": "assets/outline-logo-16.png",
@@ -12,8 +12,7 @@
   },
   "action": {
     "default_icon": "assets/outline-logo.png",
-    "default_title": "Outliner",
-    "default_popup": "options.html"
+    "default_title": "Outliner"
   },
   "background" : {
     "service_worker": "background.js",
@@ -21,7 +20,14 @@
   },
   "permissions": [
     "activeTab",
-    "contextMenus",
-    "storage"
+    "scripting"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_start",
+      "world": "MAIN"
+    }
   ]
 }
