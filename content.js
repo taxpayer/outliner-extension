@@ -11,7 +11,9 @@
   // This also covers the page swap done by an unbrick.
   function hasAdContainer(node) {
     if (node.nodeType !== Node.ELEMENT_NODE) return false;
-    return node.id.toLowerCase().includes('ad-container') ||
+    // getAttribute, not .id: a <form> with a field named "id" shadows .id
+    // with that field, which would throw here.
+    return (node.getAttribute('id') || '').toLowerCase().includes('ad-container') ||
       node.querySelector('[id*="ad-container" i]') !== null;
   }
 
