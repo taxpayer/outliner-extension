@@ -102,9 +102,11 @@ document.addEventListener('DOMContentLoaded', async () => {
       try {
         const scriptId = `outliner-${hostname.replace(/\./g, '-')}`;
         await chrome.scripting.unregisterContentScripts({ ids: [scriptId] });
-        
-        // Optionally keep permission (Chrome doesn't easily allow optional permission removal via API without origin)
         updateUI(false);
+
+        // Give back the host access requested when auto mode was turned on.
+        // Manual unbrick doesn't need it (it relies on activeTab).
+        await chrome.permissions.remove({ origins: [originMatch] });
       } catch (err) {
         console.error('Failed to disable auto-unbrick:', err);
       }
