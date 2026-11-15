@@ -75,10 +75,16 @@ globalThis.__outlinerClean = function outlinerClean(isAuto) {
           letter-spacing: 0.05em;
         }
         #outliner-bar button:hover { background: rgba(255,255,255,0.3); transform: scale(1.05); }
-        body { padding-top: 60px !important; }
         * { white-space: normal !important; }
       `;
       document.head.appendChild(style);
+
+      // Room for the banner. Kept in its own element so Dismiss can remove it:
+      // an inline style can't override an !important stylesheet rule.
+      const bannerSpace = document.createElement('style');
+      bannerSpace.id = 'outliner-banner-space';
+      bannerSpace.textContent = 'body { padding-top: 60px !important; }';
+      document.head.appendChild(bannerSpace);
 
       const banner = document.createElement('div');
       banner.id = 'outliner-bar';
@@ -90,7 +96,7 @@ globalThis.__outlinerClean = function outlinerClean(isAuto) {
 
       banner.querySelector('button').onclick = () => {
         banner.remove();
-        document.body.style.paddingTop = '0px';
+        bannerSpace.remove();
       };
 
       console.log(`🔓 Outliner: ${t.magic}`);
