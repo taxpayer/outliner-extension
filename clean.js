@@ -75,7 +75,7 @@ globalThis.__outlinerClean = function outlinerClean(isAuto) {
           letter-spacing: 0.05em;
         }
         #outliner-bar button:hover { background: rgba(255,255,255,0.3); transform: scale(1.05); }
-        * { white-space: normal !important; }
+        *:not(pre, pre *, code, textarea) { white-space: normal !important; }
       `;
       document.head.appendChild(style);
 
