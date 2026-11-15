@@ -6,7 +6,7 @@
   "btnDisableAuto": { "message": "Desactivar Auto-Desbloqueo" },
   "statusNotActive": { "message": "No activo en este sitio" },
   "statusActive": { "message": "Auto-Desbloqueo Activo" },
-  "footerNotice": { "message": "Solo funcion en la pestaña actual" },
+  "footerNotice": { "message": "Solo funciona en la pestaña actual" },
   "working": { "message": "Trabajando..." },
   "invalidSite": { "message": "Sitio no válido" },
   "errorEnableAuto": { "message": "No se pudo activar el Auto-Desbloqueo: $ERROR$", "placeholders": { "error": { "content": "$1" } } },
