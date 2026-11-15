@@ -5,10 +5,27 @@
 // window.__outlinerRemoveAds).
 (function() {
   // Ad removal runs on every page of the site, home page included, whether
-  // or not it gets unbricked. This script runs at document_start, so wait for
-  // the DOM; the load pass catches slots the site's scripts add meanwhile.
+  // or not it gets unbricked. Sites often add ad slots late (lazy loading,
+  // on scroll), so watch the document for the whole page lifetime: elements
+  // added with a matching id, or given one later, are removed right away.
+  // This also covers the page swap done by an unbrick.
+  function hasAdContainer(node) {
+    if (node.nodeType !== Node.ELEMENT_NODE) return false;
+    return node.id.toLowerCase().includes('ad-container') ||
+      node.querySelector('[id*="ad-container" i]') !== null;
+  }
+
+  new MutationObserver(mutations => {
+    const found = mutations.some(m => m.type === 'attributes'
+      ? hasAdContainer(m.target)
+      : Array.from(m.addedNodes).some(hasAdContainer));
+    // __outlinerRemoveAds applies the exact id rule (so "thread-container"
+    // survives); the check above only decides whether it is worth calling.
+    if (found) window.__outlinerRemoveAds();
+  }).observe(document, { childList: true, subtree: true, attributes: true, attributeFilter: ['id'] });
+
+  // Safety net for anything already in place before the observer started.
   document.addEventListener('DOMContentLoaded', () => window.__outlinerRemoveAds());
-  window.addEventListener('load', () => window.__outlinerRemoveAds());
 
   const MAX_ATTEMPTS = 3;
   let hasBeenCleaned = false;
@@ -33,8 +50,6 @@
 
     window.__outlinerClean(true).then(ok => {
       if (!ok) hasBeenCleaned = false; // Allow a retry on failure
-      // The swapped-in HTML brings the ad slots back.
-      if (ok) window.__outlinerRemoveAds();
       // Nothing left for the poll to do once cleaned or out of attempts.
       // (It keeps running on the home page, which never gets here.)
       if (ok || attempts >= MAX_ATTEMPTS) clearInterval(pollId);
