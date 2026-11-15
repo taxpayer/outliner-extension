@@ -14,7 +14,6 @@ globalThis.__outlinerRemoveAds = function outlinerRemoveAds() {
       removed++;
     }
   });
-  if (removed) console.log(`🔓 Outliner: removed ${removed} ad container(s).`);
   return removed;
 };
 
