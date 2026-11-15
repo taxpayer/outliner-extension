@@ -32,6 +32,14 @@ globalThis.__outlinerClean = function outlinerClean(isAuto) {
 
       document.documentElement.innerHTML = html;
 
+      // Remove ad slots. "ad-container" must start the id or follow a
+      // non-letter, so ids that merely contain it, like "thread-container"
+      // or "head-container", are left alone.
+      const adId = /(^|[^a-z])ad-container/i;
+      document.querySelectorAll('[id*="ad-container" i]').forEach(el => {
+        if (adId.test(el.id)) el.remove();
+      });
+
       const style = document.createElement('style');
       style.id = 'outliner-styles';
       style.textContent = `
