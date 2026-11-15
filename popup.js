@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   document.getElementById('unbrick-text').textContent = chrome.i18n.getMessage('btnUnbrick');
   document.getElementById('footer-text').textContent = chrome.i18n.getMessage('footerNotice');
 
-  if (!tab || !tab.url.startsWith('http')) {
+  if (!tab?.url?.startsWith('http')) {
     btnUnbrick.disabled = true;
     btnAuto.disabled = true;
     domainText.textContent = 'Invalid site';
