@@ -8,6 +8,22 @@ This extension helps you read articles by re-fetching the page content to bypass
 
 ## History
 
+### Version 4.2 `[15-Nov-2026]`
+Not so long this time, huh? 😎 After using 4.0 for a while, I noticed a few things that could be better, and some that were just plain broken. So I rolled up my sleeves, did a proper review of the whole extension and brought a new trick along. Here's what's new:
+
+- **Ads, begone!** Elements with an `ad-container` id are now removed from the page. On sites with auto-unbrick on, this happens on every page (home page included), even for those sneaky ads that show up after the page has loaded. A manual unbrick removes them too.
+- Auto-unbrick no longer kicks in on a site's home page. It's usually a list of articles, not one, so there's nothing to unbrick there.
+- Fixes:
+  - Dismissing the banner no longer leaves an empty gap at the top of the page.
+  - The toolbar badge now stays up until the page is actually unbricked, instead of blinking and vanishing.
+  - Code snippets in articles keep their line breaks.
+  - If a page can't be fetched, auto-unbrick gives up after 3 tries instead of trying again every second, forever.
+  - The popup no longer breaks on pages with no readable address.
+  - Fixed a typo in the Spanish translation. ¡Perdón! 🇪🇸
+- Fewer permissions, happier users: turning auto-unbrick off now gives back the access to that site, and the unused storage permission is gone.
+- The last few English-only texts (popup messages and the toolbar tooltip) are now translated too.
+- And a good cleanup under the hood, so the next versions come easier. 🧹
+
 ### Version 4.0.1 `[03-Apr-2026]`
 It's been a loooooooong time (again). But I'm back! And with a complete refactor because, well, time passes and some services I used to rely on or are no longer available or decided to take some directions I doubt I'll ever understand. 🤷
 
