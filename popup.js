@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           
           await chrome.scripting.registerContentScripts([{
             id: scriptId,
-            js: ['content.js'],
+            js: ['clean.js', 'content.js'], // Keep in sync with AUTO_SCRIPT_FILES in background.js
             matches: [originMatch],
             runAt: 'document_start',
             world: 'MAIN',
