@@ -1,6 +1,6 @@
 'use strict';
 
-import './clean.js'; // Defines globalThis.__outlinerClean
+import './clean.js'; // Defines globalThis.__outlinerClean and __outlinerRemoveAds
 
 const AUTO_SCRIPT_FILES = ['clean.js', 'content.js'];
 
@@ -26,6 +26,12 @@ async function cleanPage(tabId, url, isAuto = false) {
       world: 'MAIN',
       func: globalThis.__outlinerClean,
       args: [isAuto]
+    });
+    // After the swap, since the fetched HTML brings the ad slots back.
+    await chrome.scripting.executeScript({
+      target: { tabId },
+      world: 'MAIN',
+      func: globalThis.__outlinerRemoveAds
     });
   } catch (err) {
     console.error('Outliner error:', err);

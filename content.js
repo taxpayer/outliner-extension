@@ -1,8 +1,15 @@
 'use strict';
 
 // Auto mode. Registered per domain by popup.js, in the page's MAIN world,
-// right after clean.js (which defines window.__outlinerClean).
+// right after clean.js (which defines window.__outlinerClean and
+// window.__outlinerRemoveAds).
 (function() {
+  // Ad removal runs on every page of the site, home page included, whether
+  // or not it gets unbricked. This script runs at document_start, so wait for
+  // the DOM; the load pass catches slots the site's scripts add meanwhile.
+  document.addEventListener('DOMContentLoaded', () => window.__outlinerRemoveAds());
+  window.addEventListener('load', () => window.__outlinerRemoveAds());
+
   const MAX_ATTEMPTS = 3;
   let hasBeenCleaned = false;
   let attempts = 0;
@@ -26,6 +33,8 @@
 
     window.__outlinerClean(true).then(ok => {
       if (!ok) hasBeenCleaned = false; // Allow a retry on failure
+      // The swapped-in HTML brings the ad slots back.
+      if (ok) window.__outlinerRemoveAds();
       // Nothing left for the poll to do once cleaned or out of attempts.
       // (It keeps running on the home page, which never gets here.)
       if (ok || attempts >= MAX_ATTEMPTS) clearInterval(pollId);

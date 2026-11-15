@@ -1,5 +1,23 @@
 'use strict';
 
+// Removes ad slots: elements whose id contains "ad-container" at the start or
+// after a non-letter, so ids that merely contain it, like "thread-container"
+// or "head-container", are left alone. Independent of unbricking: auto mode
+// runs it on every page, home page included. Self-contained for the same
+// reason as __outlinerClean below. Returns the number of elements removed.
+globalThis.__outlinerRemoveAds = function outlinerRemoveAds() {
+  const adId = /(^|[^a-z])ad-container/i;
+  let removed = 0;
+  document.querySelectorAll('[id*="ad-container" i]').forEach(el => {
+    if (adId.test(el.id)) {
+      el.remove();
+      removed++;
+    }
+  });
+  if (removed) console.log(`🔓 Outliner: removed ${removed} ad container(s).`);
+  return removed;
+};
+
 // Shared page-cleaning routine, loaded in two ways:
 // - background.js imports this file and passes the function to
 //   chrome.scripting.executeScript. Chrome serializes the function's source,
@@ -31,14 +49,6 @@ globalThis.__outlinerClean = function outlinerClean(isAuto) {
       if (document.getElementById('outliner-bar')) return true;
 
       document.documentElement.innerHTML = html;
-
-      // Remove ad slots. "ad-container" must start the id or follow a
-      // non-letter, so ids that merely contain it, like "thread-container"
-      // or "head-container", are left alone.
-      const adId = /(^|[^a-z])ad-container/i;
-      document.querySelectorAll('[id*="ad-container" i]').forEach(el => {
-        if (adId.test(el.id)) el.remove();
-      });
 
       const style = document.createElement('style');
       style.id = 'outliner-styles';
