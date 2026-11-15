@@ -21,5 +21,4 @@ All cleaning happens in **`clean.js`**, which defines one self-contained functio
 
 Notes:
 - If the auto-mode file list changes, update it in both `popup.js` and `AUTO_SCRIPT_FILES` in `background.js`. Existing registrations persist across updates, so the `onInstalled` handler in `background.js` migrates them.
-- `chrome.action.onClicked` in `background.js` never fires while `action.default_popup` is set.
 - Popup and manifest strings come from `_locales/*/messages.json` (`en` is the default locale; there are also `de`, `es`, `pt_BR` and `pt_PT`). When you add a message key, add it to every locale file.

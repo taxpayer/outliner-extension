@@ -34,12 +34,6 @@ async function cleanPage(tabId, url, isAuto = false) {
   }
 }
 
-chrome.action.onClicked.addListener((tab) => {
-  const url = tab.url;
-  if (!url || !/^http(s)?:\/\//i.test(url)) return;
-  cleanPage(tab.id, url, false);
-});
-
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === 'manual_unbrick') {
     // Manually trigger cleaning for the active tab (provided by popup)
