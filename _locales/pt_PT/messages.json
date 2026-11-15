@@ -7,5 +7,8 @@
   "statusNotActive": { "message": "Não ativo neste site" },
   "statusActive": { "message": "Auto-Desbloqueio Ativo" },
   "footerNotice": { "message": "Funciona apenas no separador atual" },
-  "working": { "message": "A processar..." }
+  "working": { "message": "A processar..." },
+  "invalidSite": { "message": "Site inválido" },
+  "errorEnableAuto": { "message": "Não foi possível ativar o Auto-Desbloqueio: $ERROR$", "placeholders": { "error": { "content": "$1" } } },
+  "titleOutlining": { "message": "A desbloquear [$URL$]", "placeholders": { "url": { "content": "$1" } } }
 }

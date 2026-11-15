@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   if (!tab?.url?.startsWith('http')) {
     btnUnbrick.disabled = true;
     btnAuto.disabled = true;
-    domainText.textContent = 'Invalid site';
+    domainText.textContent = chrome.i18n.getMessage('invalidSite');
     return;
   }
 
@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
       } catch (err) {
         console.error('Failed to enable auto-unbrick:', err);
-        alert('Error: ' + err.message);
+        alert(chrome.i18n.getMessage('errorEnableAuto', [err.message]));
       }
     } else {
       // Toggle OFF: Unregister

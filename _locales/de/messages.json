@@ -7,5 +7,8 @@
   "statusNotActive": { "message": "Auf dieser Seite nicht aktiv" },
   "statusActive": { "message": "Auto-Entsperrung aktiv" },
   "footerNotice": { "message": "Funktioniert nur im aktuellen Tab" },
-  "working": { "message": "Verarbeitung..." }
+  "working": { "message": "Verarbeitung..." },
+  "invalidSite": { "message": "Ungültige Seite" },
+  "errorEnableAuto": { "message": "Auto-Entsperren konnte nicht aktiviert werden: $ERROR$", "placeholders": { "error": { "content": "$1" } } },
+  "titleOutlining": { "message": "Wird entsperrt [$URL$]", "placeholders": { "url": { "content": "$1" } } }
 }

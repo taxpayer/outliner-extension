@@ -7,7 +7,7 @@ const AUTO_SCRIPT_FILES = ['clean.js', 'content.js'];
 function setOutlineInit(tabId, url) {
   chrome.action.setBadgeBackgroundColor({ tabId, color: 'gray' });
   chrome.action.setBadgeText({ tabId, text: '...' });
-  chrome.action.setTitle({ tabId, title: `Outlining [${url}]` });
+  chrome.action.setTitle({ tabId, title: chrome.i18n.getMessage('titleOutlining', [url]) });
 }
 
 function setOutlineComplete(tabId) {

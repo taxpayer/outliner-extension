@@ -7,5 +7,8 @@
   "statusNotActive": { "message": "Not active on this site" },
   "statusActive": { "message": "Auto-Unbrick Active" },
   "footerNotice": { "message": "Works only on current tab" },
-  "working": { "message": "Working..." }
+  "working": { "message": "Working..." },
+  "invalidSite": { "message": "Invalid site" },
+  "errorEnableAuto": { "message": "Could not enable Auto-Unbrick: $ERROR$", "placeholders": { "error": { "content": "$1" } } },
+  "titleOutlining": { "message": "Outlining [$URL$]", "placeholders": { "url": { "content": "$1" } } }
 }
