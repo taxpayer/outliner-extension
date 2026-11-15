@@ -6,6 +6,7 @@
   const MAX_ATTEMPTS = 3;
   let hasBeenCleaned = false;
   let attempts = 0;
+  let pollId;
 
   // The site's main page (root path) usually lists articles rather than
   // showing one, so auto mode leaves it alone. Checked on every call so
@@ -25,6 +26,9 @@
 
     window.__outlinerClean(true).then(ok => {
       if (!ok) hasBeenCleaned = false; // Allow a retry on failure
+      // Nothing left for the poll to do once cleaned or out of attempts.
+      // (It keeps running on the home page, which never gets here.)
+      if (ok || attempts >= MAX_ATTEMPTS) clearInterval(pollId);
     });
   }
 
@@ -49,7 +53,7 @@
   } catch (e) {}
 
   // 2. Polling fallback, in case the page redefines the property.
-  setInterval(() => {
+  pollId = setInterval(() => {
     if (window.hasPaywall === true && !hasBeenCleaned) {
       cleanPage();
     }
