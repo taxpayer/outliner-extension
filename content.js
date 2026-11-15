@@ -12,7 +12,15 @@
   const lang = navigator.language.split('-')[0];
   const t = i18n[lang] || i18n.en;
 
+  // The site's main page (root path) usually lists articles rather than
+  // showing one, so auto mode leaves it alone. Checked on every call so
+  // SPA navigations from the home page to an article still trigger.
+  function isRootPath() {
+    return location.pathname === '/' || location.pathname === '';
+  }
+
   function cleanPage() {
+    if (isRootPath()) return;
     if (hasBeenCleaned || document.getElementById('outliner-bar')) return;
     hasBeenCleaned = true;
 
