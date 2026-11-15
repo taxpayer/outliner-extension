@@ -24,6 +24,14 @@ Not so long this time, huh? 😎 After using 4.0 for a while, I noticed a few th
 - The last few English-only texts (popup messages and the toolbar tooltip) are now translated too.
 - And a good cleanup under the hood, so the next versions come easier. 🧹
 
+### Version 4.1 `[07-Apr-2026]`
+Fresh out of the oven, 4.0 was already asking for a little polish. So here it goes, a few days later:
+
+- Brand new popup! Click the toolbar button to see whether auto-unbrick is on for the current site, unbrick the page with one click, or turn auto-unbrick on and off.
+- Narrowed down permissions: in 4.0, the extension kept an eye on every site you visited. Now it only runs where you ask it to, and Chrome asks for access to a site only when you turn auto-unbrick on there. Less access, more peace of mind. 🔒
+- Multilanguage is back! The extension now speaks English, Portuguese (Brazil and Portugal), Spanish and German. 🌍
+- Removed the Chrome notification shown after an automatic unbrick. The banner on the page already says it all, so: a cleaner experience.
+
 ### Version 4.0.1 `[03-Apr-2026]`
 It's been a loooooooong time (again). But I'm back! And with a complete refactor because, well, time passes and some services I used to rely on or are no longer available or decided to take some directions I doubt I'll ever understand. 🤷
 
