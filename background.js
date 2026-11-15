@@ -29,7 +29,9 @@ async function cleanPage(tabId, url, isAuto = false) {
         const t = i18n[lang] || i18n.en;
 
         console.log(`🔓 Outliner: ${t.triggered}`);
-        fetch(location.href)
+        // Returning the promise makes executeScript wait for it, so the
+        // badge stays up until the page has actually been replaced.
+        return fetch(location.href)
           .then(response => response.text())
           .then(html => {
             // Check again for the banner just in case (to prevent race conditions)
@@ -92,7 +94,8 @@ async function cleanPage(tabId, url, isAuto = false) {
               banner.remove();
               document.body.style.paddingTop = '0px';
             };
-          });
+          })
+          .catch(err => console.error('🔓 Outliner: Error fetching page content:', err));
       },
       args: [isAuto]
     });
